@@ -1,14 +1,14 @@
 export const Hero = () => {
   return (
-    <div className="w-full h-screen font-inter">
+    <div className="w-full h-screen font-inter flex flex-col justify-center items-center gap-2">
       {/* Fondo Hero */}
       <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center /*mask-b-from-50% mask-b-to-100%*/"></div>
       {/* Fin Fondo Hero */}
       {/* Contenido Hero */}
-      <div className="p-4 relative z-10 flex flex-col items-center justify-center h-full text-white bg-gray-500/30">
+      <div className="p-4 z-10 flex flex-col items-center justify-center h-full text-white bg-gray-500/30">
         {/* Titulo principal */}
-        <div className="absolute top-20 p-4 mx-4">
-          <h1 className="text-5xl font-ubuntu text-center font-semibold">
+        <div className="mx-4">
+          <h1 className="text-5xl min-[320px]:text-6xl font-ubuntu text-center font-semibold">
             SUPER HERO
           </h1>
           <h2 className="text-3xl font-ubuntu text-center mt-2">
@@ -26,14 +26,13 @@ export const Hero = () => {
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
               error maxime. Assumenda vero officiis cupiditate inventore illum
-              rem repellat officia dignissimos debitis dolor, non deleniti
-              necessitatibus, esse similique, praesentium enim!
+              rem repellat officia dignissimos debitis dolor.
             </p>
           </div>
         </div>
 
         {/* Fin Titulo principal */}
-        <div className="absolute bottom-10 flex flex-col items-center px-4 text-gray-800">
+        <div className="bottom-10 flex flex-col items-center px-4 text-gray-800">
           <p className="mt-4 text-xl text-center text-white">
             Explora nuestros productos y ofertas exclusivas
           </p>
