@@ -9,7 +9,7 @@ interface ModalProductProps {
 
 export const ModalProduct = ({ producto, setOpen }: ModalProductProps) => {
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex justify-center items-end md:items-center font-inter">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex justify-center items-end md:items-center font-inter w-full h-dvh">
       {/* Contenedor del Modal con Fondo Degradado */}
       <div className="relative w-full h-full md:w-96 md:h-[650px] bg-linear-to-br from-[#0F2027] via-[#203A43] to-[#2C5364] shadow-2xl overflow-hidden">
         {/* Cabecera Back Button y Título */}

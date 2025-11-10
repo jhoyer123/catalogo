@@ -736,8 +736,8 @@ export const Productos = () => {
   }, [pagina]); */
   useEffect(() => {
     window.scrollTo({ top: scrollY, behavior: "smooth" });
-    const viewportHeight = window.innerHeight;
-    setScrollY(viewportHeight + 82);
+    //const viewportHeight = window.innerHeight;
+    setScrollY(screen.height + 82);
   }, [pagina]);
 
   /* efecto para abrir el modal */
@@ -747,7 +747,7 @@ export const Productos = () => {
   };
 
   return (
-    <div className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] py-8 min-h-dvh font-inter">
+    <div id="productos" className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] py-8 min-h-dvh font-inter">
       <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
       </h2>
