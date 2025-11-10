@@ -1,6 +1,6 @@
 import { CircleX, Plus, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ModalProduct } from "../components/ModalProduct";
+import { useNavigate } from "react-router-dom";
 
 /* datos de prueba */
 interface Producto {
@@ -683,10 +683,10 @@ export const Productos = () => {
   const [productosFiltrados, setProductosFiltrados] =
     useState<Producto[]>(productos);
   /* estado para el modal */
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  //const [isModalOpen, setIsModalOpen] = useState(false);
   /* estado para el producto seleccionado */
-  const [productoSeleccionado, setProductoSeleccionado] =
-    useState<Producto | null>(null);
+  /* const [productoSeleccionado, setProductoSeleccionado] =
+    useState<Producto | null>(null); */
 
   /* variable que indica el límite de productos por página */
   const limitePorPagina = 10;
@@ -741,15 +741,24 @@ export const Productos = () => {
   }, [categoria]);
 
   /* efecto para abrir el modal */
-  const abrirModal = (producto: Producto) => {
+  /* const abrirModal = (producto: Producto) => {
     setProductoSeleccionado(producto);
     setIsModalOpen(true);
+  }; */
+
+  const navigate = useNavigate();
+
+  const handleDetailProduct = (producto: Producto) => {
+    /* antes limpiar sesionstorage productoDetalle */
+    sessionStorage.removeItem("productoDetalle");
+    sessionStorage.setItem("productoDetalle", JSON.stringify(producto));
+    navigate("/DetailProduct");
   };
 
   return (
     <div
       id="productos"
-      className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] min-h-dvh font-inter mt-12"
+      className="pb-6 w-screen bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] h-auto font-inter mt-12"
     >
       {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
@@ -837,7 +846,7 @@ export const Productos = () => {
                 </p>
 
                 <button
-                  onClick={() => abrirModal(producto)}
+                  onClick={() => handleDetailProduct(producto)}
                   className="bg-gray-900 text-white border border-white rounded-tl-lg rounded-br-xl w-10 h-10 flex justify-center items-center absolute bottom-0 right-0 z-0"
                   aria-label="Añadir al carrito"
                 >
@@ -871,15 +880,6 @@ export const Productos = () => {
         </button>
       </div>
       {/* Fin Paginación botones */}
-
-      {/* Modal de Producto */}
-      {isModalOpen && (
-        <ModalProduct
-          producto={productoSeleccionado}
-          setOpen={setIsModalOpen}
-        />
-      )}
-      {/* Fin Modal de Producto */}
     </div>
   );
 };

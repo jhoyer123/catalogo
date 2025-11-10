@@ -7,7 +7,7 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover"></div>
       {/* <!-- Fin Fondo Hero --> */}
       {/* <!-- Contenido Hero --> */}
-      <div className="p-4 relative z-10 flex flex-col items-center justify-center min-h-dvh text-white bg-gray-500/30 gap-20">
+      <div className="p-4 relative z-10 flex flex-col items-center justify-center h-screen text-white bg-gray-500/30 gap-20">
         {/* <!-- Titulo principal --> */}
         <div className="p-4 mx-4">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">
