@@ -1,13 +1,13 @@
 export const Hero = () => {
   return (
-    <div className="w-full h-dvh font-inter flex flex-col justify-center items-center gap-2">
+    <div className="w-full min-h-dvh font-inter flex flex-col justify-center items-center overflow-hidden">
       {/* Fondo Hero */}
-      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center /*mask-b-from-50% mask-b-to-100%*/"></div>
+      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center"></div>
       {/* Fin Fondo Hero */}
       {/* Contenido Hero */}
-      <div className="p-4 z-10 flex flex-col items-center justify-center h-full text-white bg-gray-500/30">
+      <div className="p-4 z-10 flex flex-col items-center justify-center min-h-dvh text-white bg-gray-500/30">
         {/* Titulo principal */}
-        <div className="mx-4">
+        <div className="mb-3">
           <h1 className="text-5xl min-[320px]:text-6xl font-ubuntu text-center font-semibold">
             SUPER HERO
           </h1>
