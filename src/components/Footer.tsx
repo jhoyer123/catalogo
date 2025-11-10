@@ -1,4 +1,4 @@
-import Tiktok from "../assets/icons/tiktok.svg";
+import Tiktok from "../assets/icons/Tiktok.svg";
 import Facebook from "../assets/icons/Facebook.svg";
 import Twitter from "../assets/icons/Twitter.svg";
 import Instagram from "../assets/icons/Instagram.svg";
