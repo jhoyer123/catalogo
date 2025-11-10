@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <section className="relative w-full h-dvh z-0 font-inter">
+    <section className="w-full min-h-dvh z-0 font-inter">
       {/* <!-- Fondo Hero --> */}
       <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center /*mask-b-from-50% mask-b-to-100%*/"></div>
       {/* <!-- Fin Fondo Hero --> */}
