@@ -1,4 +1,4 @@
-import { CircleX, ClosedCaptionIcon, MenuIcon } from "lucide-react";
+import { CircleX, MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
