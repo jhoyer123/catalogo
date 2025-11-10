@@ -1,11 +1,4 @@
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Twitter,
-  Instagram,
-  Linkedin,
-} from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export const Contact = () => {
   // Datos de Contacto
@@ -27,21 +20,6 @@ export const Contact = () => {
       title: "Oficina Central",
       value: "Av. Principal #123, Ciudad Metrópolis",
       link: "https://maps.app.goo.gl/TUwzK62k8xNnN4S7A", // Ejemplo de Google Maps link
-    },
-  ];
-
-  // Datos de Redes Sociales
-  const socialLinks = [
-    { name: "Twitter", icon: Twitter, link: "https://twitter.com/superhero" },
-    {
-      name: "Instagram",
-      icon: Instagram,
-      link: "https://instagram.com/superhero",
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      link: "https://linkedin.com/company/superhero",
     },
   ];
 
