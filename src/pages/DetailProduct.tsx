@@ -53,7 +53,7 @@ export const DetailProduct = () => {
         <p className="text-gray-600 text-sm mb-4">{producto?.descripcion}</p>
 
         {/* Botones de acción */}
-        <div className="flex gap-3 fixed bottom-0 left-0 w-full bg-white">
+        <div className="flex gap-3 fixed bottom-0 left-0 w-full bg-white px-2">
           <button
             className="flex-1 py-3 rounded-xl font-semibold text-white 
               bg-linear-to-r from-[#2C5364] to-[#0F2027] hover:opacity-90 transition-opacity shadow-lg"
