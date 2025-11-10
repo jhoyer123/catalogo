@@ -1,6 +1,6 @@
 import { CircleX, Plus, Search } from "lucide-react";
 import { useEffect, useState } from "react";
-import { ModalProduct } from "./ModalProduct";
+import { ModalProduct } from "../components/ModalProduct";
 
 /* datos de prueba */
 interface Producto {
@@ -749,14 +749,14 @@ export const Productos = () => {
   return (
     <div
       id="productos"
-      className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] min-h-dvh font-inter"
+      className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] min-h-dvh font-inter mt-12"
     >
       {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
       </h2> */}
       <div className="min-h-dvh">
         {/* Inicio Header barra de busqueda y filtrado */}
-        <div className=" flex flex-col gap-1 justify-center w-full sticky top-0 z-10 bg-gray-50 mb-1 border border-gray-900">
+        <div className=" flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-50 mb-1 border border-gray-900">
           <div className="px-2 py-2">
             <div className="flex gap-1.5 w-full">
               {/* Botón de la izquierda (Lupa/Cerrar) */}

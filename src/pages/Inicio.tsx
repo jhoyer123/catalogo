@@ -1,5 +1,4 @@
 import { Hero } from "../components/Hero";
-import { Footer } from "../components/Footer";
 import { Mapa } from "../components/Mapa";
 import { ContactAction } from "../components/ContactAction";
 import { Contact } from "../components/Contact";
@@ -12,7 +11,6 @@ export const Inicio = () => {
       <Contact />
       <SocialRed />
       <Mapa />
-      <Footer />
       <ContactAction />
     </>
   );

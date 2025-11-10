@@ -31,7 +31,7 @@ export const Contact = () => {
           <h2 className="mt-2 text-3xl font-extrabold text-gray-900 sm:text-4xl uppercase">
             Contáctanos
           </h2>
-          <p className="mt-4 text-xl text-gray-500">
+          <p className="mt-4 text-gray-500 text-md">
             Estamos disponibles para ayudarte con cualquier consulta.
           </p>
         </div>
@@ -65,7 +65,7 @@ export const Contact = () => {
                             : "_self"
                         }
                         rel="noopener noreferrer"
-                        className="hover:underline"
+                        className="hover:underline max-w-full text-wrap"
                       >
                         {item.value}
                       </a>
@@ -81,7 +81,7 @@ export const Contact = () => {
                 Horario de Atención:
               </p>
               <p className="mt-1 text-indigo-700">
-                Lunes a Viernes: 9:00 - 18:00 (GMT-4)
+                Lunes a Viernes: 9:00 - 18:00
               </p>
             </div>
           </div>

@@ -32,7 +32,7 @@ export const SocialRed = () => {
       <h3 className="font-ubuntu text-2xl font-bold text-gray-900 border-b pb-2 mb-4">
         Síguenos en Nuestras Redes Sociales
       </h3>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 mb-6 text-center text-md">
         Conéctate con nosotros en nuestras plataformas sociales para estar al
         tanto de las últimas novedades.
       </p>
