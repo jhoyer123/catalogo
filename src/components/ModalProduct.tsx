@@ -9,11 +9,11 @@ interface ModalProductProps {
 
 export const ModalProduct = ({ producto, setOpen }: ModalProductProps) => {
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex justify-center items-end md:items-center font-inter w-full h-dvh">
-      {/* Contenedor del Modal con Fondo Degradado */}
-      <div className="relative w-full h-full md:w-96 md:h-[650px] bg-linear-to-br from-[#0F2027] via-[#203A43] to-[#2C5364] shadow-2xl overflow-hidden">
-        {/* Cabecera Back Button y Título */}
-        <div className="w-full flex justify-between items-center py-2 px-5 text-white z-20 absolute top-0">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-center items-end md:items-center font-inter w-full h-dvh overflow-hidden min-h-dvh">
+      {/* Contenedor del Modal */}
+      <div className="relative w-full h-full md:w-96 md:h-[650px] bg-linear-to-br from-[#0F2027] via-[#203A43] to-[#2C5364] shadow-2xl overflow-hidden rounded-none md:rounded-2xl">
+        {/* Cabecera */}
+        <div className="w-full flex justify-between items-center py-2 px-5 text-white absolute top-0 z-40">
           <button
             onClick={() => setOpen(false)}
             className="text-3xl font-light text-white hover:text-gray-300"
@@ -24,8 +24,7 @@ export const ModalProduct = ({ producto, setOpen }: ModalProductProps) => {
         </div>
 
         {/* Imagen del Producto */}
-        <div className="flex justify-center items-center h-[50%] w-full mt-8 md:mt-16 z-10 relative">
-          {/* Asumiendo que producto.imagen contiene la URL del auricular */}
+        <div className="flex justify-center items-center h-[50%] w-full mt-10 md:pt-20 relative">
           <img
             src={producto?.imagen}
             alt={producto?.nombre}
@@ -33,48 +32,47 @@ export const ModalProduct = ({ producto, setOpen }: ModalProductProps) => {
           />
         </div>
 
-        {/* Tarjeta de Detalles (Contenido Blanco) */}
+        {/* Tarjeta Detalles (solo aquí queremos scroll) */}
         <div
-          className="absolute bottom-0 w-full bg-white rounded-t-3xl shadow-xl z-30 scroll-x-hidden overflow-y-auto pb-13"
-          style={{ height: "50%" }}
+          className="absolute bottom-0 w-full bg-white rounded-t-3xl shadow-xl z-30 flex flex-col"
+          style={{ height: "calc(50% + 1rem)" }}
         >
-          <div className="p-3">
+          {/* Contenido scrollable */}
+          <div className="flex-1 overflow-y-auto p-4">
             {/* Nombre y Precio */}
-            <div className="flex gap-6 justify-between items-center mb-4">
-              {/* Ajustado mb para compensar la eliminación de rating/colores */}
-              <div>
-                <h4 className=" font-semibold text-gray-800">
-                  {producto?.nombre}
-                </h4>
-              </div>
-              <p className="text-3xl font-bold text-gray-800">
+            <div className="flex gap-6 justify-between items-center mb-4 pt-1">
+              <h4 className="font-semibold text-gray-800">
+                {producto?.nombre}
+              </h4>
+              <p className="text-3xl font-bold text-gray-800 shrink-0">
                 ${producto?.precio}
               </p>
             </div>
-            {/* descripción del producto */}
-            <div className="text-gray-600 text-sm">
-              <p className="whitespace-pre-line">{producto?.descripcion}s</p>
+
+            {/* Descripción con scroll */}
+            <div className="text-gray-600 text-sm pb-2">
+              <p className="whitespace-pre-line leading-relaxed">
+                {producto?.descripcion}
+              </p>
             </div>
           </div>
 
-          {/* Botones de Acción (ADD TO CART y Carrito) */}
-          <div className="flex gap-4 items-center justify-center fixed bottom-0 w-full px-2 pb-1">
+          {/* Botones fijos */}
+          <div className="flex gap-4 items-center justify-center p-2 bg-white rounded-t-lg shadow-lg border-t border-gray-100 shrink-0">
             <button
               className="flex grow items-center justify-center py-3 px-6 rounded-xl font-bold text-lg text-white 
               bg-linear-to-r from-[#2C5364] to-[#0F2027] hover:opacity-90 transition-opacity duration-300 shadow-lg"
             >
               Solicitar Producto
             </button>
-            {/* Botón de Carrito (Shopping Bag) */}
             <button
-              className="animate-bounce bg-gray-300 border border-black p-3 rounded-xl text-gray-700  hover:bg-gray-200 transition-colors duration-200"
+              className="animate-bounce bg-gray-300 border border-black p-3 rounded-xl text-gray-700 hover:bg-gray-200 transition-colors duration-200 shrink-0"
               aria-label="View Cart"
             >
-              {/* Icono de Carrito (usando SVG placeholder) */}
               <svg
                 className="w-6 h-6"
                 fill="none"
-                stroke="blue"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >

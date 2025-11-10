@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 export const Hero = () => {
   return (
     <section className="w-full min-h-dvh z-0 font-inter">
       {/* <!-- Fondo Hero --> */}
-      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center /*mask-b-from-50% mask-b-to-100%*/"></div>
+      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover bg-center min-h-dvh"></div>
       {/* <!-- Fin Fondo Hero --> */}
       {/* <!-- Contenido Hero --> */}
-      <div className="p-4 relative z-10 flex flex-col items-center justify-center h-full text-white bg-gray-500/30 gap-20">
+      <div className="p-4 relative z-10 flex flex-col items-center justify-center min-h-dvh text-white bg-gray-500/30 gap-20">
         {/* <!-- Titulo principal --> */}
         <div className="p-4 mx-4">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">
@@ -27,12 +29,12 @@ export const Hero = () => {
           <p className="mt-4 text-xl text-center text-white">
             Explora nuestros productos y ofertas exclusivas
           </p>
-          <a
-            href="#productos"
+          <Link
+            to="/productos"
             className="mt-6 px-6 py-3 bg-black/90 rounded-lg hover:bg-gray-800 text-white font-inter transition-colors border border-white shadow-lg"
           >
             Ver Productos
-          </a>
+          </Link>
         </div>
         {/* Fin contenido llamativo */}
       </div>

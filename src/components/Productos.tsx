@@ -673,7 +673,7 @@ const categorias: Categoria[] = [
 export const Productos = () => {
   /* estados para los estilos */
   const [isSearch, setIsSearch] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  /* const [scrollY, setScrollY] = useState(0); */
   /* estado para la búsqueda y filtrado */
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
   const [categoria, setCategoria] = useState("");
@@ -730,15 +730,15 @@ export const Productos = () => {
   };
 
   /* efecto para el scroll suave al inicio de la pagina o al inicio de la seccion de productos*/
-  /* useEffect(() => {
-    window.scrollTo({ top: scrollY, behavior: "smooth" });
-    setScrollY(screen.height + 82);
-  }, [pagina]); */
   useEffect(() => {
-    window.scrollTo({ top: scrollY, behavior: "smooth" });
-    //const viewportHeight = window.innerHeight;
-    setScrollY(screen.height + 82);
-  }, [pagina]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pagina, terminoBusqueda]);
+
+  useEffect(() => {
+    if (pagina === 1) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [categoria]);
 
   /* efecto para abrir el modal */
   const abrirModal = (producto: Producto) => {
@@ -747,10 +747,13 @@ export const Productos = () => {
   };
 
   return (
-    <div id="productos" className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] py-8 min-h-dvh font-inter">
-      <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
+    <div
+      id="productos"
+      className="pb-6 w-full bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] min-h-dvh font-inter"
+    >
+      {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
-      </h2>
+      </h2> */}
       <div className="min-h-dvh">
         {/* Inicio Header barra de busqueda y filtrado */}
         <div className=" flex flex-col gap-1 justify-center w-full sticky top-0 z-10 bg-gray-50 mb-1 border border-gray-900">

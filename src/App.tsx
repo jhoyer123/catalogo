@@ -1,22 +1,13 @@
-import { Hero } from "./components/Hero";
+import { Inicio } from "./pages/Inicio";
 import { Productos } from "./components/Productos";
-import { Footer } from "./components/Footer";
-import { Mapa } from "./components/Mapa";
-import { ContactAction } from "./components/ContactAction";
-import { Contact } from "./components/Contact";
-import { SocialRed } from "./components/SocialRed";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
-    <>
-      <Hero />
-      <Productos />
-      <Contact />
-      <SocialRed />
-      <Mapa />
-      <Footer />
-      <ContactAction />
-    </>
+    <Routes>
+      <Route path="/" element={<Inicio />} />
+      <Route path="*" element={<Productos />} />
+    </Routes>
   );
 };
 
