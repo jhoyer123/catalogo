@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
-    <section className="relative h-screen w-screen z-0">
+    <section className="relative h-screen w-full z-0">
       {/* <!-- Fondo Hero --> */}
-      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/5f/8f/2f/5f8f2fd0c354d6494a4670f53ba84f36.jpg)] bg-cover"></div>
+      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/ad/e8/86/ade8868b13ce7dfa53e259099a5f78a4.jpg)] bg-cover"></div>
       {/* <!-- Fin Fondo Hero --> */}
       {/* <!-- Contenido Hero --> */}
       <div className="p-4 relative z-10 flex flex-col items-center justify-center h-screen text-white bg-gray-500/30 gap-20">

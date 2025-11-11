@@ -11,7 +11,7 @@ const menuItems: menuItemsP[] = [
   { src: "/", name: "Inicio" },
   { src: "/productos", name: "Productos" },
   { src: "/ofertas", name: "Ofertas" },
-  { src: "/contactos", name: "Contactos" },
+  { src: "#contactos", name: "Contactos" },
 ];
 
 export const Nav = () => {
@@ -19,22 +19,41 @@ export const Nav = () => {
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
-    console.log(openMenu);
   };
 
   return (
     <nav
       id="header"
-      className="fixed top-0 z-20 w-full bg-linear-to-l from-black to-white font-sans p-1"
+      className="fixed items-center justify-center top-0 z-20 w-full bg-linear-to-l from-black to-white font-inter p-1"
     >
-      <div className="px-4 text-lg">
+      <div className="px-4 text-lg max-w-[750px] mx-auto">
         {/* Menu modo escritorio */}
         <div className="flex justify-between items-center">
+          {/* Logo del menu (nav) */}
           <img
             className="w-10 h-10 rounded-2xl"
             src="https://i.pinimg.com/1200x/c7/85/68/c78568c446d383a7977dd19288b6c389.jpg"
             alt="logo"
           />
+          {/* Fin logo del menu (nav) */}
+          {/* Menu modo escritorio */}
+          <ul className="hidden md:flex gap-8 text-gray-200 font-medium">
+            {menuItems.map((item) => (
+              <li
+                key={item.name}
+                id="item-menu"
+                className="p-3 hover:text-blue-400"
+              >
+                {item.src.includes("#") ? (
+                  <a href={item.src}>{item.name}</a>
+                ) : (
+                  <Link to={item.src}>{item.name}</Link>
+                )}
+              </li>
+            ))}
+          </ul>
+          {/* Fin menu modo escritorio */}
+          {/* boton que habre el menu mobile */}
           <button
             onClick={handleOpenMenu}
             id="btn-open"
@@ -42,6 +61,7 @@ export const Nav = () => {
           >
             <MenuIcon />
           </button>
+          {/* Fin boton open menu mobile */}
         </div>
         {/*  <!-- Fin menu modo escritorio --> */}
         {/* Menu modo mobile */}
@@ -68,9 +88,15 @@ export const Nav = () => {
                     id="item-menu"
                     className="p-3 text-gray-600 "
                   >
-                    <Link to={item.src} onClick={handleOpenMenu}>
-                      {item.name}
-                    </Link>
+                    {item.src.includes("#") ? (
+                      <a href={item.src} onClick={handleOpenMenu}>
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link to={item.src} onClick={handleOpenMenu}>
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

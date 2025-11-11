@@ -758,15 +758,15 @@ export const Productos = () => {
   return (
     <div
       id="productos"
-      className="pb-6 w-screen bg-[url(https://i.pinimg.com/1200x/6f/3f/09/6f3f09cb983664502526792ad1391b5b.jpg)] h-auto font-inter mt-12"
+      className="pb-6 bg-black h-auto font-inter mt-12 w-full"
     >
       {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
       </h2> */}
       <div className="min-h-dvh">
         {/* Inicio Header barra de busqueda y filtrado */}
-        <div className=" flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-50 mb-1 border border-gray-900">
-          <div className="px-2 py-2">
+        <div className=" flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-50 mb-1 border border-gray-900 items-center">
+          <div className="px-2 py-2 max-w-[500px] w-full sm:max-w-[600px]">
             <div className="flex gap-1.5 w-full">
               {/* Botón de la izquierda (Lupa/Cerrar) */}
               <button
@@ -783,9 +783,8 @@ export const Productos = () => {
               {isSearch && (
                 <input
                   type="text"
-                  // Estilos para replicar la barra de búsqueda (gris, redondeada)
-                  className="bg-gray-950 text-white border border-gray-300 px-3 py-1 rounded-full w-full m-0 
-         placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-300"
+                  className="bg-gray-950 text-white border px-3 py-1 rounded-full w-full m-0 
+         placeholder-gray-300 focus:outline-none focus:ring-1 transition-all duration-300 max-w-[400px]"
                   placeholder="Buscar productos..."
                   value={terminoBusqueda}
                   onChange={(e) => setTerminoBusqueda(e.target.value)}
@@ -802,7 +801,7 @@ export const Productos = () => {
                     className="bg-gray-900 border border-gray-300 px-3 py-[7.5px] rounded-full w-full m-0 
           text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
                   >
-                    <option value="">Selecciona una categoría</option>
+                    <option value="">Todas las categorias</option>
                     {categorias.map((c) => (
                       <option key={c.id} value={c.nombre}>
                         {c.nombre}
@@ -817,7 +816,13 @@ export const Productos = () => {
         {/* Fin Header barra de busqueda y filtrado */}
 
         {/* Inicio grid productos */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-0.5 py-1.5 max-w-dvh">
+        <div
+          className="grid grid-cols-1 gap-1.5 px-3 py-1.5 max-w-[420px] mx-auto
+        /* estilos para tablets */
+        sm:grid-cols-2 sm:gap-2.5 sm:p-1 sm:max-w-[800px]
+        /* estilos para pantallas grandes */
+        md:grid-cols-3 md:max-w-[1100px]"
+        >
           {productosPagina.map((producto) => (
             /* Card de producto */
             <div
@@ -829,7 +834,7 @@ export const Productos = () => {
                 <img
                   src={producto.imagen}
                   alt={producto.nombre}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-fill rounded-lg"
                 />
               </div>
 
