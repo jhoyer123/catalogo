@@ -10,8 +10,8 @@ export interface ProductoInt {
   nuevoPrecio?: number;
 }
 
-
 export interface CategoriaInt {
   id: number;
   nombre: string;
+  imagen?: string;
 }

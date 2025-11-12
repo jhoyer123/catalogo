@@ -25,7 +25,7 @@ export const Contact = () => {
 
   return (
     <section
-      id="contacto"
+      id="contactos"
       className="py-16 md:py-24 bg-gray-50 dark:bg-gray-800 font-inter transition-colors duration-300"
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[750px]">

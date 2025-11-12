@@ -4,36 +4,32 @@ export const Hero = () => {
   return (
     <section className="relative h-screen w-full z-0">
       {/* <!-- Fondo Hero --> */}
-      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/ad/e8/86/ade8868b13ce7dfa53e259099a5f78a4.jpg)] bg-cover"></div>
+      <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/ad/e8/86/ade8868b13ce7dfa53e259099a5f78a4.jpg)] bg-cover opacity-90"></div>
       {/* <!-- Fin Fondo Hero --> */}
       {/* <!-- Contenido Hero --> */}
       <div className="p-4 relative z-10 flex flex-col items-center justify-center h-screen text-white bg-gray-500/30 gap-20">
         {/* <!-- Titulo principal --> */}
         <div className="p-4 mx-4">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">
-            SUPER HERO
+          <h1 className="text-5xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu mb-3">
+            TechZone
           </h1>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">
-            Tu tienda de confianza
+          <h2 className="text-xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">
+            Innovación en tus manos
           </h2>
         </div>
         {/* <!-- Fin Titulo principal --> */}
-        {/* logo */}
-        <img
-          src="https://i.pinimg.com/1200x/e6/44/a9/e644a9e8bc7664e783b74d5b63503662.jpg"
-          alt="logo"
-          className="w-18 h-18 mx-auto rounded-full my-4"
-        />
         {/* contenido llamativo */}
-        <div className="flex flex-col items-center px-4 text-gray-800">
-          <p className="mt-4 text-xl text-center text-white">
-            Explora nuestros productos y ofertas exclusivas
+        <div className="flex flex-col items-center p-4 text-gray-800 relative">
+          <div className="absolute inset-0 opacity-30 bg-black rounded-lg"></div>
+          <p className="mt-4 text-xl text-center text-white font-ubuntu z-10 max-w-md mb-10">
+            Bienvenido a TechZone Tecnología de última generación a tu alcance.
+            Encuentra las mejores laptops, PCs y accesorios.
           </p>
           <Link
-            to="/productos"
-            className="mt-6 px-6 py-3 bg-black/90 rounded-lg hover:bg-gray-800 text-white font-inter transition-colors border border-white shadow-lg"
+            to="/producto"
+            className="z-10 mt-6 px-6 py-3 bg-black/90 rounded-lg hover:bg-gray-800 text-white font-inter transition-colors border border-white shadow-lg animate-bounce"
           >
-            Ver Productos
+            Ver Catálogo
           </Link>
         </div>
         {/* Fin contenido llamativo */}

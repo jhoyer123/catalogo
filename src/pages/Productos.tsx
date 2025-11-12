@@ -1,6 +1,6 @@
-import { CircleX, Plus, Search } from "lucide-react";
+import { Plus, Search, SlidersHorizontal } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 /* datos de prueba */
 interface Producto {
@@ -14,332 +14,18 @@ interface Producto {
   descOferta?: string;
   nuevoPrecio?: number;
 }
-/* const productos: Producto[] = [
-  {
-    id: 1,
-    nombre: 'Portátil Gamer 15"',
-    precio: 1199.99,
-    imagen:
-      "https://i.pinimg.com/1200x/b6/d5/f1/b6d5f1b4a0dfc8e3b5956bb6f1cef48e.jpg",
-    descripcion:
-      'Portátil de 15.6" con CPU de alto rendimiento, GPU dedicada y refrigeración mejorada; ideal para gaming y creación de contenido.',
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 1079.99,
-  },
-  {
-    id: 2,
-    nombre: "PC Escritorio Mini (i7)",
-    precio: 899.0,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Mini PC con procesador i7, 16GB RAM y almacenamiento NVMe de alta velocidad. Perfecta para oficina y tareas exigentes en poco espacio.",
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "5% de descuento por tiempo limitado",
-    nuevoPrecio: 854.05,
-  },
-  {
-    id: 3,
-    nombre: 'Monitor 27" 4K IPS',
-    precio: 499.0,
-    imagen:
-      "https://i.pinimg.com/736x/7c/d2/e5/7cd2e5d8ddcf710ae28c4a8810cb6161.jpg",
-    descripcion:
-      'Monitor 27" 4K con panel IPS, alta precisión de color y soporte VESA. Excelente para edición, diseño y gaming a alta resolución.',
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 424.15,
-  },
-  {
-    id: 4,
-    nombre: "Teclado Mecánico RGB",
-    precio: 129.99,
-    imagen:
-      "https://i.pinimg.com/736x/b5/f8/21/b5f821c85447f7d85a2b84c003109d9c.jpg",
-    descripcion:
-      "Teclado mecánico compacto con switches táctiles, retroiluminación RGB y anti-ghosting para una experiencia de tipeo y gaming precisa.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "20% de descuento por tiempo limitado",
-    nuevoPrecio: 103.99,
-  },
-  {
-    id: 5,
-    nombre: "Auriculares Gaming con Micrófono",
-    precio: 89.99,
-    imagen:
-      "https://i.pinimg.com/1200x/11/db/37/11db379882bb1d2011ab4842883d2def.jpg",
-    descripcion:
-      "Auriculares circumaurales con sonido envolvente, cancelación ligera de ruido y micrófono retráctil para comunicación clara en juegos.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 76.49,
-  },
-  {
-    id: 6,
-    nombre: "SSD NVMe 1TB",
-    precio: 139.99,
-    imagen:
-      "https://i.pinimg.com/1200x/66/0c/88/660c881658e8ee0ca584c2b52dd25aa8.jpg",
-    descripcion:
-      "Unidad NVMe M.2 1TB con altas velocidades de lectura/escritura, ideal para OS, aplicaciones y tiempos de carga rápidos.",
-    categoria: "Componentes",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 125.99,
-  },
-  {
-    id: 1,
-    nombre: 'Portátil Gamer 15"',
-    precio: 1199.99,
-    imagen:
-      "https://i.pinimg.com/1200x/b6/d5/f1/b6d5f1b4a0dfc8e3b5956bb6f1cef48e.jpg",
-    descripcion:
-      'Portátil de 15.6" con CPU de alto rendimiento, GPU dedicada y refrigeración mejorada; ideal para gaming y creación de contenido.',
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 1079.99,
-  },
-  {
-    id: 2,
-    nombre: "PC Escritorio Mini (i7)",
-    precio: 899.0,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Mini PC con procesador i7, 16GB RAM y almacenamiento NVMe de alta velocidad. Perfecta para oficina y tareas exigentes en poco espacio.",
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "5% de descuento por tiempo limitado",
-    nuevoPrecio: 854.05,
-  },
-  {
-    id: 3,
-    nombre: 'Monitor 27" 4K IPS',
-    precio: 499.0,
-    imagen:
-      "https://i.pinimg.com/736x/7c/d2/e5/7cd2e5d8ddcf710ae28c4a8810cb6161.jpg",
-    descripcion:
-      'Monitor 27" 4K con panel IPS, alta precisión de color y soporte VESA. Excelente para edición, diseño y gaming a alta resolución.',
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 424.15,
-  },
-  {
-    id: 4,
-    nombre: "Teclado Mecánico RGB",
-    precio: 129.99,
-    imagen:
-      "https://i.pinimg.com/736x/b5/f8/21/b5f821c85447f7d85a2b84c003109d9c.jpg",
-    descripcion:
-      "Teclado mecánico compacto con switches táctiles, retroiluminación RGB y anti-ghosting para una experiencia de tipeo y gaming precisa.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "20% de descuento por tiempo limitado",
-    nuevoPrecio: 103.99,
-  },
-  {
-    id: 5,
-    nombre: "Auriculares Gaming con Micrófono",
-    precio: 89.99,
-    imagen:
-      "https://i.pinimg.com/1200x/11/db/37/11db379882bb1d2011ab4842883d2def.jpg",
-    descripcion:
-      "Auriculares circumaurales con sonido envolvente, cancelación ligera de ruido y micrófono retráctil para comunicación clara en juegos.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 76.49,
-  },
-  {
-    id: 6,
-    nombre: "SSD NVMe 1TB",
-    precio: 139.99,
-    imagen:
-      "https://i.pinimg.com/1200x/66/0c/88/660c881658e8ee0ca584c2b52dd25aa8.jpg",
-    descripcion:
-      "Unidad NVMe M.2 1TB con altas velocidades de lectura/escritura, ideal para OS, aplicaciones y tiempos de carga rápidos.",
-    categoria: "Componentes",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 125.99,
-  },
-  {
-    id: 1,
-    nombre: 'Portátil Gamer 15"',
-    precio: 1199.99,
-    imagen:
-      "https://i.pinimg.com/1200x/b6/d5/f1/b6d5f1b4a0dfc8e3b5956bb6f1cef48e.jpg",
-    descripcion:
-      'Portátil de 15.6" con CPU de alto rendimiento, GPU dedicada y refrigeración mejorada; ideal para gaming y creación de contenido.',
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 1079.99,
-  },
-  {
-    id: 2,
-    nombre: "PC Escritorio Mini (i7)",
-    precio: 899.0,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Mini PC con procesador i7, 16GB RAM y almacenamiento NVMe de alta velocidad. Perfecta para oficina y tareas exigentes en poco espacio.",
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "5% de descuento por tiempo limitado",
-    nuevoPrecio: 854.05,
-  },
-  {
-    id: 3,
-    nombre: 'Monitor 27" 4K IPS',
-    precio: 499.0,
-    imagen:
-      "https://i.pinimg.com/736x/7c/d2/e5/7cd2e5d8ddcf710ae28c4a8810cb6161.jpg",
-    descripcion:
-      'Monitor 27" 4K con panel IPS, alta precisión de color y soporte VESA. Excelente para edición, diseño y gaming a alta resolución.',
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 424.15,
-  },
-  {
-    id: 4,
-    nombre: "Teclado Mecánico RGB",
-    precio: 129.99,
-    imagen:
-      "https://i.pinimg.com/736x/b5/f8/21/b5f821c85447f7d85a2b84c003109d9c.jpg",
-    descripcion:
-      "Teclado mecánico compacto con switches táctiles, retroiluminación RGB y anti-ghosting para una experiencia de tipeo y gaming precisa.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "20% de descuento por tiempo limitado",
-    nuevoPrecio: 103.99,
-  },
-  {
-    id: 5,
-    nombre: "Auriculares Gaming con Micrófono",
-    precio: 89.99,
-    imagen:
-      "https://i.pinimg.com/1200x/11/db/37/11db379882bb1d2011ab4842883d2def.jpg",
-    descripcion:
-      "Auriculares circumaurales con sonido envolvente, cancelación ligera de ruido y micrófono retráctil para comunicación clara en juegos.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 76.49,
-  },
-  {
-    id: 6,
-    nombre: "SSD NVMe 1TB",
-    precio: 139.99,
-    imagen:
-      "https://i.pinimg.com/1200x/66/0c/88/660c881658e8ee0ca584c2b52dd25aa8.jpg",
-    descripcion:
-      "Unidad NVMe M.2 1TB con altas velocidades de lectura/escritura, ideal para OS, aplicaciones y tiempos de carga rápidos.",
-    categoria: "Componentes",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 125.99,
-  },
-  {
-    id: 1,
-    nombre: 'Portátil Gamer 15"',
-    precio: 1199.99,
-    imagen:
-      "https://i.pinimg.com/1200x/b6/d5/f1/b6d5f1b4a0dfc8e3b5956bb6f1cef48e.jpg",
-    descripcion:
-      'Portátil de 15.6" con CPU de alto rendimiento, GPU dedicada y refrigeración mejorada; ideal para gaming y creación de contenido.',
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 1079.99,
-  },
-  {
-    id: 2,
-    nombre: "PC Escritorio Mini (i7)",
-    precio: 899.0,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Mini PC con procesador i7, 16GB RAM y almacenamiento NVMe de alta velocidad. Perfecta para oficina y tareas exigentes en poco espacio.",
-    categoria: "Computadoras",
-    oferta: true,
-    descOferta: "5% de descuento por tiempo limitado",
-    nuevoPrecio: 854.05,
-  },
-  {
-    id: 3,
-    nombre: 'Monitor 27" 4K IPS',
-    precio: 499.0,
-    imagen:
-      "https://i.pinimg.com/736x/7c/d2/e5/7cd2e5d8ddcf710ae28c4a8810cb6161.jpg",
-    descripcion:
-      'Monitor 27" 4K con panel IPS, alta precisión de color y soporte VESA. Excelente para edición, diseño y gaming a alta resolución.',
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 424.15,
-  },
-  {
-    id: 4,
-    nombre: "Teclado Mecánico RGB",
-    precio: 129.99,
-    imagen:
-      "https://i.pinimg.com/736x/b5/f8/21/b5f821c85447f7d85a2b84c003109d9c.jpg",
-    descripcion:
-      "Teclado mecánico compacto con switches táctiles, retroiluminación RGB y anti-ghosting para una experiencia de tipeo y gaming precisa.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "20% de descuento por tiempo limitado",
-    nuevoPrecio: 103.99,
-  },
-  {
-    id: 5,
-    nombre: "Auriculares Gaming con Micrófono",
-    precio: 89.99,
-    imagen:
-      "https://i.pinimg.com/1200x/11/db/37/11db379882bb1d2011ab4842883d2def.jpg",
-    descripcion:
-      "Auriculares circumaurales con sonido envolvente, cancelación ligera de ruido y micrófono retráctil para comunicación clara en juegos.",
-    categoria: "Periféricos",
-    oferta: true,
-    descOferta: "15% de descuento por tiempo limitado",
-    nuevoPrecio: 76.49,
-  },
-  {
-    id: 6,
-    nombre: "SSD NVMe 1TB",
-    precio: 139.99,
-    imagen:
-      "https://i.pinimg.com/1200x/66/0c/88/660c881658e8ee0ca584c2b52dd25aa8.jpg",
-    descripcion:
-      "Unidad NVMe M.2 1TB con altas velocidades de lectura/escritura, ideal para OS, aplicaciones y tiempos de carga rápidos.",
-    categoria: "Componentes",
-    oferta: true,
-    descOferta: "10% de descuento por tiempo limitado",
-    nuevoPrecio: 125.99,
-  },
-]; */
 
 const productos: Producto[] = [
   {
     id: 1,
     nombre:
-      "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor",
+      "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor asdddddddddddddddddddddddd sss dsssssssssssssssss",
     precio: 45.99,
     imagen:
       "https://i.pinimg.com/1200x/84/2a/10/842a1049724bf438d6d2df75999fb845.jpg",
     descripcion:
       "Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd /n Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd",
-    categoria: "Accesorios Móviles",
+    categoria: "Periféricos",
     oferta: true,
     descOferta: "15% de descuento, ¡carga tu ecosistema!",
     nuevoPrecio: 39.09,
@@ -418,7 +104,7 @@ const productos: Producto[] = [
     descripcion:
       "Tarjeta gráfica de última generación con 16GB VRAM, DLSS 4.0 y Ray Tracing avanzado. Rendimiento extremo para gaming 4K.",
     categoria: "Componentes",
-    oferta: true,
+    oferta: false,
     descOferta: "¡Bundle con juego gratis!",
     nuevoPrecio: 999.99,
   },
@@ -431,7 +117,7 @@ const productos: Producto[] = [
     descripcion:
       "Mouse de diseño vertical que reduce la tensión en la muñeca, con conexión inalámbrica y sensibilidad DPI ajustable.",
     categoria: "Periféricos",
-    oferta: true,
+    oferta: false,
     descOferta: "25% de descuento por ser producto ergonómico",
     nuevoPrecio: 26.25,
   },
@@ -457,7 +143,7 @@ const productos: Producto[] = [
     descripcion:
       "Power bank de alta capacidad con Power Delivery (PD) de 65W, capaz de cargar laptops, tabletas y teléfonos rápidamente.",
     categoria: "Accesorios Móviles",
-    oferta: true,
+    oferta: false,
     descOferta: "30% OFF, ¡llévala contigo a donde vayas!",
     nuevoPrecio: 39.19,
   },
@@ -483,7 +169,7 @@ const productos: Producto[] = [
     descripcion:
       "Tablet de alto rendimiento con pantalla AMOLED de 120Hz, 12GB de RAM y soporte para lápiz óptico.",
     categoria: "Tabletas",
-    oferta: true,
+    oferta: false,
     descOferta: "10% de descuento y funda de regalo",
     nuevoPrecio: 719.1,
   },
@@ -496,7 +182,7 @@ const productos: Producto[] = [
     descripcion:
       "Audífonos TWS (True Wireless Stereo) con ANC (Active Noise Cancellation) y 8 horas de batería.",
     categoria: "Audio",
-    oferta: true,
+    oferta: false,
     descOferta: "20% OFF en todos los colores",
     nuevoPrecio: 135.99,
   },
@@ -522,7 +208,7 @@ const productos: Producto[] = [
     descripcion:
       "Kit de memoria RAM DDR5 de 32GB (6400 MHz) con disipador de calor y optimización para Intel/AMD.",
     categoria: "Componentes",
-    oferta: true,
+    oferta: false,
     descOferta: "Compra el kit y obtén 10% de rebaja",
     nuevoPrecio: 143.1,
   },
@@ -548,7 +234,7 @@ const productos: Producto[] = [
     descripcion:
       "Impresora 3D con área de impresión de 300x300x400 mm y nivelación automática. Para aficionados y profesionales.",
     categoria: "Gadgets",
-    oferta: true,
+    oferta: false,
     descOferta: "Financiación sin intereses a 12 meses",
     nuevoPrecio: 650.0,
   },
@@ -574,7 +260,7 @@ const productos: Producto[] = [
     descripcion:
       "Adaptador de corriente compacto de 100W con tecnología GaN (Nitruro de Galio) para una carga más rápida y segura.",
     categoria: "Accesorios Móviles",
-    oferta: true,
+    oferta: false,
     descOferta: "Cupón de 10% adicional por ser accesorio",
     nuevoPrecio: 58.49,
   },
@@ -626,7 +312,7 @@ const productos: Producto[] = [
     descripcion:
       "Licencia de 1 año para software profesional de edición de video, con herramientas de IA y efectos especiales.",
     categoria: "Software",
-    oferta: true,
+    oferta: false,
     descOferta: "50% de descuento en la primera suscripción",
     nuevoPrecio: 49.5,
   },
@@ -639,7 +325,7 @@ const productos: Producto[] = [
     descripcion:
       "Monitor curvo Ultrawide (21:9) de 34 pulgadas, resolución WQHD (3440x1440), 144Hz de tasa de refresco y panel VA.",
     categoria: "Periféricos",
-    oferta: true,
+    oferta: false,
     descOferta: "Descuento por liquidación de stock (15% OFF)",
     nuevoPrecio: 509.99,
   },
@@ -668,43 +354,72 @@ const categorias: Categoria[] = [
   { id: 2, nombre: "Periféricos" },
   { id: 3, nombre: "Componentes" },
 ];
+
+interface estadoProd {
+  id: number;
+  nombre: string;
+}
+
+const estadosProd: estadoProd[] = [{ id: 2, nombre: "oferta" }];
 /* fin datos de prueba */
 
 export const Productos = () => {
+  /* estados de parametors */
+  const [searchParams] = useSearchParams();
   /* estados para los estilos */
-  const [isSearch, setIsSearch] = useState(false);
-  /* const [scrollY, setScrollY] = useState(0); */
+  //const [isSearch, setIsSearch] = useState(false);
   /* estado para la búsqueda y filtrado */
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
   const [categoria, setCategoria] = useState("");
+  const [estadoProd, setEstadoProd] = useState("");
+  /* estado para abrir modal de filtro */
+  const [openFilter, setOpenFilter] = useState(false);
   /* estado para la paginación */
   const [pagina, setPagina] = useState(1);
   /* estado para los productos filtrados */
   const [productosFiltrados, setProductosFiltrados] =
     useState<Producto[]>(productos);
-  /* estado para el modal */
-  //const [isModalOpen, setIsModalOpen] = useState(false);
-  /* estado para el producto seleccionado */
-  /* const [productoSeleccionado, setProductoSeleccionado] =
-    useState<Producto | null>(null); */
 
   /* variable que indica el límite de productos por página */
   const limitePorPagina = 10;
 
-  /* efecto para filtrar productos */
-  useEffect(() => {
+  /* funcion de filtro */
+  const filtrarProductos = () => {
     const filtrados = productos.filter((producto) => {
       return (
         (categoria === producto.categoria || categoria === "") &&
         (producto.nombre
           .toLowerCase()
           .includes(terminoBusqueda.toLowerCase()) ||
-          terminoBusqueda === "")
+          terminoBusqueda === "") &&
+        (estadoProd === "" || producto.oferta)
       );
     });
-    setProductosFiltrados(filtrados);
+    return filtrados;
+  };
+
+  /* aplicar filtro */
+  const cancelarfiltro = () => {
+    setCategoria("");
+    setEstadoProd("todos");
     setPagina(1);
-  }, [terminoBusqueda, categoria]);
+  };
+
+  /* efecto para filtrar productos */
+  useEffect(() => {
+    setProductosFiltrados(filtrarProductos());
+    setPagina(1);
+  }, [terminoBusqueda, categoria, estadoProd]);
+
+  /* use effect para filtros desde parametros */
+  useEffect(() => {
+    const mostrarOfertas = searchParams.get("oferta") === "true";
+    if (mostrarOfertas) {
+      setProductosFiltrados(productos.filter((p) => p.oferta));
+    } else {
+      setProductosFiltrados(productos);
+    }
+  }, [searchParams, productos]);
 
   /* total de páginas */
   const totalPaginas = Math.ceil(productosFiltrados.length / limitePorPagina);
@@ -740,151 +455,217 @@ export const Productos = () => {
     }
   }, [categoria]);
 
-  /* efecto para abrir el modal */
-  /* const abrirModal = (producto: Producto) => {
-    setProductoSeleccionado(producto);
-    setIsModalOpen(true);
-  }; */
-
   const navigate = useNavigate();
 
   const handleDetailProduct = (producto: Producto) => {
     /* antes limpiar sesionstorage productoDetalle */
     sessionStorage.removeItem("productoDetalle");
     sessionStorage.setItem("productoDetalle", JSON.stringify(producto));
-    navigate("/DetailProduct");
+    navigate("/detallesProducto");
   };
 
   return (
-    <div
-      id="productos"
-      className="pb-6 bg-black h-auto font-inter mt-12 w-full"
-    >
-      {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
+    <>
+      <div
+        id="productos"
+        className="pb-6 bg-white h-auto font-inter mt-12 w-full"
+      >
+        {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
       </h2> */}
-      <div className="min-h-dvh">
-        {/* Inicio Header barra de busqueda y filtrado */}
-        <div className=" flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-50 mb-1 border border-gray-900 items-center">
-          <div className="px-2 py-2 max-w-[500px] w-full sm:max-w-[600px]">
-            <div className="flex gap-1.5 w-full">
-              {/* Botón de la izquierda (Lupa/Cerrar) */}
-              <button
-                onClick={() => setIsSearch(!isSearch)}
-                // Estilos para el botón circular de la izquierda (gris, redondeado)
-                className="bg-gray-950 text-white rounded-full w-10 h-10 flex items-center justify-center shrink-0 border border-gray-300
-               hover:bg-gray-300 transition-colors duration-200"
-              >
-                {isSearch && <CircleX />}
-                {!isSearch && <Search />}
-              </button>
-
-              {/* Input de Búsqueda */}
-              {isSearch && (
+        <div className="min-h-dvh">
+          {/* Inicio Header barra de busqueda y filtrado */}
+          <div className="flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-300 mb-1  items-center">
+            <div className="px-2 py-2 max-w-[500px] w-full sm:max-w-[600px]">
+              <div className="flex gap-3 w-full">
+                {/* Botón de busqueda*/}
+                <button
+                  // Estilos para el botón circular de la izquierda (gris, redondeado)
+                  className="bg-white text-black rounded-full w-10 h-10 flex items-center justify-center shrink-0"
+                >
+                  <Search />
+                </button>
+                {/* Input de Búsqueda */}
                 <input
                   type="text"
-                  className="bg-gray-950 text-white border px-3 py-1 rounded-full w-full m-0 
+                  className="bg-white gray-950 text-black px-3 py-1 rounded-full w-full m-0 
          placeholder-gray-300 focus:outline-none focus:ring-1 transition-all duration-300 max-w-[400px]"
                   placeholder="Buscar productos..."
                   value={terminoBusqueda}
                   onChange={(e) => setTerminoBusqueda(e.target.value)}
                 />
-              )}
-
-              {/* Select de Categoría */}
-              {!isSearch && (
-                <div className="w-full">
-                  <select
-                    value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
-                    // Estilos para replicar la barra (gris, redondeada)
-                    className="bg-gray-900 border border-gray-300 px-3 py-[7.5px] rounded-full w-full m-0 
-          text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  >
-                    <option value="">Todas las categorias</option>
-                    {categorias.map((c) => (
-                      <option key={c.id} value={c.nombre}>
-                        {c.nombre}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
+                {/* boton de filtrado */}
+                <button
+                  onClick={() => {
+                    console.log("abrir modal de filtro");
+                    setOpenFilter(!openFilter);
+                  }}
+                  className="bg-white text-black rounded-md w-10 h-10 flex items-center justify-center px-1.5"
+                >
+                  <SlidersHorizontal />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        {/* Fin Header barra de busqueda y filtrado */}
+          {/* Fin Header barra de busqueda y filtrado */}
 
-        {/* Inicio grid productos */}
-        <div
-          className="grid grid-cols-1 gap-1.5 px-3 py-1.5 max-w-[420px] mx-auto
+          {/* Inicio grid productos */}
+          <div
+            className="grid grid-cols-1 gap-1.5 px-6 py-1.5 max-w-[420px] mx-auto
         /* estilos para tablets */
         sm:grid-cols-2 sm:gap-2.5 sm:p-1 sm:max-w-[800px]
         /* estilos para pantallas grandes */
         md:grid-cols-3 md:max-w-[1100px]"
-        >
-          {productosPagina.map((producto) => (
-            /* Card de producto */
-            <div
-              key={producto.id + "-" + producto.nombre}
-              className="bg-white rounded-xl shadow-lg flex flex-col 
-            border border-gray-200 overflow-hidden my-1"
-            >
-              <div className="w-full h-65 flex justify-center items-center mb-4 bg-gray-100 rounded-lg">
-                <img
-                  src={producto.imagen}
-                  alt={producto.nombre}
-                  className="w-full h-full object-fill rounded-lg"
-                />
-              </div>
-
-              <div className="px-1 text-left text-gray-800 w-full mb-1 h-auto line-clamp-3">
-                <h2>{producto.nombre}</h2>
-              </div>
-
+          >
+            {productosPagina.map((producto) => (
+              /* Card de producto */
               <div
-                className="flex justify-between items-center w-full px-1 mt-auto 
-            relative p-1"
+                key={producto.id + "-" + producto.nombre}
+                className="bg-white rounded-xl shadow-lg flex flex-col 
+            border border-gray-200 overflow-hidden my-1 h-auto"
               >
-                <p className="text-blue-700 font-bold text-xl ">
-                  ${producto.precio.toFixed(2)}
-                </p>
+                <div className="w-full h-65 flex justify-center items-center mb-4 bg-gray-100 rounded-lg">
+                  <img
+                    src={producto.imagen}
+                    alt={producto.nombre}
+                    className="w-full h-full object-fill rounded-lg"
+                  />
+                </div>
 
-                <button
-                  onClick={() => handleDetailProduct(producto)}
-                  className="bg-gray-900 text-white border border-white rounded-tl-lg rounded-br-xl w-10 h-10 flex justify-center items-center absolute bottom-0 right-0 z-0"
-                  aria-label="Añadir al carrito"
+                <div className="flex flex-col px-4 text-left text-gray-800 w-full mb-1 h-auto line-clamp-3">
+                  {!producto.oferta && (
+                    <p className="text-gray-900 font-bold text-xl ">
+                      ${producto.precio.toFixed(2)}
+                    </p>
+                  )}
+                  <div className="flex justify-between">
+                    {producto.oferta && (
+                      <div>
+                        <div className="flex justify-between w-full">
+                          <p className="text-gray-900 font-bold text-xl line-through">
+                            ${producto.precio.toFixed(2)}
+                          </p>
+                          <p className="text-blue-700 font-bold text-xl ">
+                            ${producto.nuevoPrecio?.toFixed(2)}
+                          </p>
+                        </div>
+                        <div className="bg-red-500 px-2 py-1 rounded-md mb-2 w-auto">
+                          <span className="text-sm text-white ">
+                            {producto.descOferta}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="pr-15">
+                    <h2 className="line-clamp-4">{producto.nombre}</h2>
+                  </div>
+                </div>
+
+                <div
+                  className="flex justify-between items-center w-full px-1 mt-auto 
+            relative p-1"
                 >
-                  <Plus />
-                </button>
+                  <button
+                    onClick={() => handleDetailProduct(producto)}
+                    className="bg-gray-900 text-white border border-white rounded-tl-lg rounded-br-xl w-10 h-10 flex justify-center items-center absolute bottom-0 right-0 z-0"
+                    aria-label="Añadir al carrito"
+                  >
+                    <Plus />
+                  </button>
+                </div>
               </div>
-            </div>
-            /* Fin Card de producto */
-          ))}
+              /* Fin Card de producto */
+            ))}
+          </div>
+          {/* Fin grid productos */}
         </div>
-        {/* Fin grid productos */}
+        {/* Inicio Paginación botones */}
+        <div className="flex gap-2.5 justify-center mt-4">
+          <button
+            className="bg-blue-800 text-white py-1 px-2 rounded-md hover:bg-blue-600 disabled:bg-gray-400 border border-gray-200"
+            onClick={paginaAnterior}
+            disabled={pagina === 1}
+          >
+            Anterior
+          </button>
+          <span className="text-lg bg-white border border-black-500 p-1 rounded-md">
+            Página {pagina} de {totalPaginas}
+          </span>
+          <button
+            className="bg-blue-800 text-white py-1 px-2 rounded-md hover:bg-blue-600 disabled:bg-gray-400 border border-gray-200"
+            onClick={siguientePagina}
+            disabled={pagina === totalPaginas}
+          >
+            Siguiente
+          </button>
+        </div>
+        {/* Fin Paginación botones */}
       </div>
-      {/* Inicio Paginación botones */}
-      <div className="flex gap-2.5 justify-center mt-4">
-        <button
-          className="bg-blue-800 text-white py-1 px-2 rounded-md hover:bg-blue-600 disabled:bg-gray-400 border border-gray-200"
-          onClick={paginaAnterior}
-          disabled={pagina === 1}
-        >
-          Anterior
-        </button>
-        <span className="text-lg bg-white border border-black-500 p-1 rounded-md">
-          Página {pagina} de {totalPaginas}
-        </span>
-        <button
-          className="bg-blue-800 text-white py-1 px-2 rounded-md hover:bg-blue-600 disabled:bg-gray-400 border border-gray-200"
-          onClick={siguientePagina}
-          disabled={pagina === totalPaginas}
-        >
-          Siguiente
-        </button>
-      </div>
-      {/* Fin Paginación botones */}
-    </div>
+      {/* Modal del filtro   (Deberia ser un formulario si hay mas de 300 productos y el filtrado se hace complejo) */}
+      {openFilter && (
+        <>
+          <div className="fixed inset-0 z-10 bg-black opacity-70"></div>
+          <div className="h-80 w-90 p-4 fixed top-0 bottom-0 left-0 right-0 my-auto mx-auto z-10 bg-gray-900 border border-gray-900 rounded-md shadow-lg flex flex-col gap-4 text-white">
+            <h2>Filtro de productos</h2>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="categoria">Categoría:</label>
+              <select
+                id="categoria"
+                name="categoria"
+                className="border border-gray-700 rounded-md p-1 bg-gray-800 text-white"
+                value={categoria}
+                onChange={(e) => setCategoria(e.target.value)}
+              >
+                <option value="">Todos</option>
+                {categorias.map((categoria) => (
+                  <option key={categoria.id} value={categoria.nombre}>
+                    {categoria.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label htmlFor="estado">Estado:</label>
+              <select
+                id="categoria"
+                name="categoria"
+                className="border border-gray-700 rounded-md p-1 bg-gray-800 text-white"
+                value={estadoProd}
+                onChange={(e) => setEstadoProd(e.target.value)}
+              >
+                <option value="">Todos</option>
+                {estadosProd.map((estado) => (
+                  <option key={estado.id} value={estado.nombre}>
+                    {estado.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* botones */}
+            <div className="flex justify-between gap-2 mt-auto">
+              <button
+                onClick={() => {
+                  cancelarfiltro();
+                  setOpenFilter(false);
+                }}
+                className="bg-gray-700 text-white py-1 px-3 rounded-md hover:bg-gray-600"
+              >
+                Cancelar y quitar
+              </button>
+              <button
+                onClick={() => {
+                  setOpenFilter(false);
+                }}
+                className="bg-blue-700 text-white py-1 px-3 rounded-md hover:bg-gray-600"
+              >
+                Aplicar Filtros
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+      {/* Fin modal del filtro */}
+    </>
   );
 };

@@ -28,7 +28,7 @@ export const DetailProduct = () => {
         {/* Botón de regreso visible siempre */}
         <div className="absolute top-4 left-4 z-50">
           <button
-            onClick={() => navigate("/Productos")}
+            onClick={() => navigate(-1)}
             className="p-3 rounded-full bg-black/70 backdrop-blur-sm border border-white/40 shadow-md hover:bg-black/90 transition-all duration-200"
           >
             <ArrowLeft className="text-white w-6 h-6" />

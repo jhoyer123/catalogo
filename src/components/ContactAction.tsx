@@ -1,4 +1,4 @@
-import Whatsapp from "../assets/icons/Whatsapp.svg";
+import Whatsapp from "../assets/icons/Whatsapp1.svg";
 
 export const ContactAction = () => {
   return (

@@ -9,9 +9,10 @@ interface menuItemsP {
 
 const menuItems: menuItemsP[] = [
   { src: "/", name: "Inicio" },
-  { src: "/productos", name: "Productos" },
-  { src: "/ofertas", name: "Ofertas" },
-  { src: "#contactos", name: "Contactos" },
+  { src: "/sobre-nosotros", name: "Sobre Nosotros" },
+  { src: "/catalogo?oferta=true", name: "Ofertas" },
+  { src: "/catalogo", name: "Catálogo" },
+  { src: "/contacto", name: "Contactos" },
 ];
 
 export const Nav = () => {
@@ -24,7 +25,7 @@ export const Nav = () => {
   return (
     <nav
       id="header"
-      className="fixed items-center justify-center top-0 z-20 w-full bg-linear-to-l from-black to-white font-inter p-1"
+      className="fixed items-center justify-center top-0 z-20 w-full bg-black p-1"
     >
       <div className="px-4 text-lg max-w-[750px] mx-auto">
         {/* Menu modo escritorio */}
@@ -32,7 +33,7 @@ export const Nav = () => {
           {/* Logo del menu (nav) */}
           <img
             className="w-10 h-10 rounded-2xl"
-            src="https://i.pinimg.com/1200x/c7/85/68/c78568c446d383a7977dd19288b6c389.jpg"
+            src="https://i.pinimg.com/1200x/b2/e4/a8/b2e4a89b64ab128f8332d906966be401.jpg"
             alt="logo"
           />
           {/* Fin logo del menu (nav) */}

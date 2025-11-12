@@ -1,4 +1,6 @@
 import { Layout } from "../src/layout/Layout";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 import { DetailProduct } from "./pages/DetailProduct";
 import { Inicio } from "./pages/Inicio";
 import { Productos } from "./pages/Productos";
@@ -9,8 +11,10 @@ const App = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/DetailProduct" element={<DetailProduct />} />
+        <Route path="/sobre-nosotros" element={<About />} />
+        <Route path="/catalogo" element={<Productos />} />
+        <Route path="/detallesProducto" element={<DetailProduct />} />
+        <Route path="/contacto" element={<Contact />} />
       </Routes>
     </Layout>
   );
