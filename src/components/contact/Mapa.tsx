@@ -1,6 +1,6 @@
 export const Mapa = () => {
   return (
-    <div className="w-full p-5 bg-gray-900 font-ubuntu text-white">
+    <div className="w-full p-5 bg-gray-900 font-ubuntu text-white rounded-2xl shadow-lg mt-6 lg:mt-0">
       <h2 className="text-center text-2xl mb-4">Ubicación del negocio</h2>
       <p>Cómo llegar</p>
       <iframe

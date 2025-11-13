@@ -99,12 +99,12 @@ const ProdDestacados = () => {
       </div>
       {/* Fin Titulo y descripcion seccion productos destacados */}
       {/* Lista de productos destacados */}
-      <div className="flex gap-3 overflow-x-auto snap-x py-3 px-4 h-[600px] hide-scrollbar font-inter scroll-smooth">
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-3 px-4 h-[600px] hide-scrollbar font-inter scroll-smooth">
         {productos.map((producto) => (
           <div
             key={producto.id}
             // CLAVE: Usamos 'flex-col' aquí para apilar el contenido dentro de la tarjeta
-            className="snap-center w-[80%] shrink-0 h-full flex flex-col rounded-2xl overflow-hidden shadow-lg border border-gray-300 bg-gray-100"
+            className="snap-center w-[90%] shrink-0 h-full flex flex-col rounded-2xl overflow-hidden shadow-lg border border-gray-300 bg-gray-100"
           >
             {/* 1. Imagen - Ocupa la parte superior */}
             <img

@@ -1,15 +1,28 @@
+import { SocialRed } from "../contact/SocialRed";
+
 export const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6 font-inter">
-      {/* logo */}
-      <img
-        src="https://i.pinimg.com/1200x/e6/44/a9/e644a9e8bc7664e783b74d5b63503662.jpg"
-        alt="logo"
-        className="w-13 h-13 mx-auto rounded-full my-4"
-      />
+    <footer className="bg-gray-800 text-white py-6 font-sans text-sm">
       <div className="container mx-auto text-center">
+        {/* bloque informativo */}
+        <div className="flex flex-col">
+          <h3 className="mb-2">TechZone</h3>
+          <p>Av. Principal #123, Zona Centro, La Paz - Bolivia</p>
+          <a
+            href="mailto:contacto@tutienda.com"
+            className="text-white hover:underline"
+          >
+            contacto@tutienda.com
+          </a>
+          <a href="tel:+59170000000" className="text-white hover:underline">
+            +591 700 000 000
+          </a>
+        </div>
+        <SocialRed />
+        {/* Fin bloque informativo */}
+        <hr className="my-3 border-gray-700" />
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} SUPER HERO. Todos los derechos
+          &copy; {new Date().getFullYear()} TechZone. Todos los derechos
           reservados.
         </p>
       </div>

@@ -26,7 +26,7 @@ export const Hero = () => {
             Encuentra las mejores laptops, PCs y accesorios.
           </p>
           <Link
-            to="/producto"
+            to="/catalogo"
             className="z-10 mt-6 px-6 py-3 bg-black/90 rounded-lg hover:bg-gray-800 text-white font-inter transition-colors border border-white shadow-lg animate-bounce"
           >
             Ver Catálogo

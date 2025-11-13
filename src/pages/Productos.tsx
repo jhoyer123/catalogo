@@ -398,10 +398,10 @@ export const Productos = () => {
     return filtrados;
   };
 
-  /* aplicar filtro */
-  const cancelarfiltro = () => {
+  /* quitar filtro */
+  const cancelarFiltro = () => {
     setCategoria("");
-    setEstadoProd("todos");
+    setEstadoProd("");
     setPagina(1);
   };
 
@@ -416,6 +416,7 @@ export const Productos = () => {
     const mostrarOfertas = searchParams.get("oferta") === "true";
     if (mostrarOfertas) {
       setProductosFiltrados(productos.filter((p) => p.oferta));
+      setEstadoProd("oferta");
     } else {
       setProductosFiltrados(productos);
     }
@@ -646,7 +647,7 @@ export const Productos = () => {
             <div className="flex justify-between gap-2 mt-auto">
               <button
                 onClick={() => {
-                  cancelarfiltro();
+                  cancelarFiltro();
                   setOpenFilter(false);
                 }}
                 className="bg-gray-700 text-white py-1 px-3 rounded-md hover:bg-gray-600"
