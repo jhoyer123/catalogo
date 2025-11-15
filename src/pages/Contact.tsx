@@ -27,7 +27,7 @@ export const Contact = () => {
   return (
     <section
       id="contactos"
-      className="pt-16 pb-10 md:py-24 bg-gray-50 dark:bg-gray-800 font-inter transition-colors duration-300 px-10
+      className="pt-16 pb-10 md:py-24 bg-gray-50 dark:bg-gray-800 font-inter transition-colors duration-300
       md:text-xl"
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1000px]">
@@ -49,7 +49,7 @@ export const Contact = () => {
           <img
             src="https://i.pinimg.com/1200x/57/2e/14/572e1453e353f60c803bd01c4ea68a05.jpg"
             alt="imagen de atención al cliente"
-            className="rounded-lg border max-w-[500px] mx-auto"
+            className="rounded-lg border max-w-[500px] mx-auto w-full"
           />
           <div className="flex flex-col gap-8">
             {contactDetails.map((item, index) => (
