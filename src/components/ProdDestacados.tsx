@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { type ProductoInt } from "../interfaces/Producto";
+import "./stylesPD.css";
 
 const productos: ProductoInt[] = [
   {
@@ -85,47 +86,104 @@ const productos: ProductoInt[] = [
 ];
 
 const ProdDestacados = () => {
+  const navigate = useNavigate();
+
+  const handleDetailProduct = (producto: ProductoInt) => {
+    /* antes limpiar sesionstorage productoDetalle */
+    sessionStorage.removeItem("productoDetalle");
+    sessionStorage.setItem("productoDetalle", JSON.stringify(producto));
+    navigate("/detallesProducto");
+  };
+
   return (
-    <section className=" bg-white dark:bg-gray-900 min-auto font-inter py-6">
+    <section className=" bg-white dark:bg-gray-900 font-inter py-6 h-auto">
       {/* Titulo y descripcion seccion productos destacados */}
-      <div className="text-center mb-8 px-7">
+      <div
+        className="text-center mb-8 px-7
+      /* md estilos */
+      sm:px-15
+      md:px-15"
+      >
         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-blue-400 font-ubuntu mb-7">
           Productos Destacados
         </h2>
-        <p className="mt-2 text-lg text-gray-600 dark:text-gray-300 max-w-sm mx-auto">
+        <p className="mt-2 text-lg text-gray-600 dark:text-gray-300 mx-auto">
           Conoce los equipos más elegidos por nuestros clientes. Rendimiento,
           calidad y el mejor precio garantizado.
         </p>
       </div>
       {/* Fin Titulo y descripcion seccion productos destacados */}
       {/* Lista de productos destacados */}
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory py-3 px-4 h-[600px] hide-scrollbar font-inter scroll-smooth">
+      <div
+        className="
+        max-w-[1300px]
+        flex gap-4 
+        overflow-x-auto snap-x snap-mandatory 
+        py-6 px-4 
+        h-[600px] 
+        font-inter scroll-smooth 
+        mx-auto
+        /* Comportamiento de Flex Normal en md: y superior */
+        md:flex-wrap md:justify-center md:gap-6 
+        md:h-auto 
+        
+        /* Desactiva el Scroll y el Snap en md: */
+        md:overflow-x-clip md:snap-none
+    "
+      >
         {productos.map((producto) => (
           <div
             key={producto.id}
-            // CLAVE: Usamos 'flex-col' aquí para apilar el contenido dentro de la tarjeta
-            className="snap-center w-[90%] shrink-0 h-full flex flex-col rounded-2xl overflow-hidden shadow-lg border border-gray-300 bg-gray-100"
+            className="
+            producto-card
+            w-[85vw]          /* MÓVIL: 85% del ancho */
+            snap-center       /* Centra el 'snap' */
+            shrink-0          /* ¡Esencial! Evita que se encoja */
+            max-w-[400px]
+            h-full
+            flex flex-col
+            rounded-2xl 
+            overflow-hidden 
+            shadow-xl
+            border border-gray-700 
+            bg-gray-800       /* Fondo oscuro para la tarjeta */
+            hover:scale-105 transition-transform duration-300
+          "
           >
-            {/* 1. Imagen - Ocupa la parte superior */}
-            <img
-              src={producto.imagen}
-              className="object-cover w-full h-[380px] rounded-t-2xl mb-4"
-            />
+            {/* 1. Imagen */}
+            <div className="w-full h-[380px] overflow-hidden">
+              <img
+                src={producto.imagen}
+                alt={producto.nombre}
+                className="object-cover w-full h-full transition-transform duration-500 ease-in-out group-hover:scale-105"
+              />
+            </div>
 
-            {/* 2. Cuerpo - Usamos 'flex-grow' para que ocupe el espacio vertical restante */}
-            <div className="flex flex-col justify-between grow px-2">
-              {/* Información de Precio/Nombre - Se mantiene arriba */}
-              <div className="flex flex-col h-auto px-3">
-                <h3 className="text-blue-800 text-2xl font-semibold dark:text-gray-300 mb-2 block">
-                  {producto.precio}$
+            {/* 2. Cuerpo - 'grow' hace que ocupe el espacio restante */}
+            <div className="flex flex-col justify-between grow p-4">
+              {/* Info de Precio/Nombre - Se mantiene arriba */}
+              <div className="flex flex-col">
+                <h3 className="text-blue-400 text-2xl font-bold mb-2 block">
+                  ${producto.precio}
                 </h3>
-                <p className="line-clamp-3">{producto.nombre}</p>
+                <p className="text-gray-200 text-lg line-clamp-3">
+                  {producto.nombre}
+                </p>
               </div>
 
-              {/* Botón - Es empujado hacia abajo por la lógica 'justify-between' o 'mt-auto' */}
+              {/* Botón - 'justify-between' lo empuja abajo */}
               <Link
-                to={`/productos/${producto.id}`}
-                className="text-center p-3 mt-4 w-full text-white rounded-2xl bg-blue-700 block mb-2"
+                onClick={() => handleDetailProduct(producto)}
+                to={`/detallesProducto`}
+                className="
+                text-center p-3 mt-4 w-full 
+                text-white text-md font-semibold
+                rounded-xl 
+                bg-blue-600 
+                hover:bg-blue-500
+                transition-colors duration-300
+                block
+              "
               >
                 Ver Producto
               </Link>

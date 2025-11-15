@@ -7,14 +7,16 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="relative min-h-screen flex flex-col">
-      <header>
-        <Nav />
-      </header>
-      <main>{children}</main>
-      <footer>
-        <Footer />
-      </footer>
+    <div className="">
+      <div className="relative w-full h-screen flex flex-col">
+        <header>
+          <Nav />
+        </header>
+        <main className="grow">{children}</main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 };

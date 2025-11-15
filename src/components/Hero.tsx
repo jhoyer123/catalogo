@@ -10,7 +10,7 @@ export const Hero = () => {
       <div className="p-4 relative z-10 flex flex-col items-center justify-center h-screen text-white bg-gray-500/30 gap-20">
         {/* <!-- Titulo principal --> */}
         <div className="p-4 mx-4">
-          <h1 className="text-5xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu mb-3">
+          <h1 className="text-5xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu mb-3 md:text-6xl">
             TechZone
           </h1>
           <h2 className="text-xl sm:text-4xl lg:text-5xl font-bold text-center font-ubuntu">

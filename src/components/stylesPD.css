@@ -1,0 +1,13 @@
+@media (min-width: 767px) {
+  .producto-card {
+    height: 450px;
+    width: 340px;
+  }
+}
+
+@media (min-width: 867px) {
+  .producto-card {
+    height: 500px;
+    width: 400px;
+  }
+}

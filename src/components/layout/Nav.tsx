@@ -25,11 +25,11 @@ export const Nav = () => {
   return (
     <nav
       id="header"
-      className="fixed items-center justify-center top-0 z-20 w-full bg-black p-1"
+      className="fixed items-center justify-center top-0 z-20 w-full bg-black p-1 font-inter box-border shadow-md"
     >
-      <div className="px-4 text-lg max-w-[750px] mx-auto">
+      <div className="px-4 text-lg max-w-[750px] mx-auto w-full lg:max-w-[850px]">
         {/* Menu modo escritorio */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center lg:gap-5">
           {/* Logo del menu (nav) */}
           <img
             className="w-10 h-10 rounded-2xl"
@@ -38,7 +38,7 @@ export const Nav = () => {
           />
           {/* Fin logo del menu (nav) */}
           {/* Menu modo escritorio */}
-          <ul className="hidden md:flex gap-8 text-gray-200 font-medium">
+          <ul className="hidden md:flex gap-2 text-gray-200 lg:gap-5">
             {menuItems.map((item) => (
               <li
                 key={item.name}
@@ -69,7 +69,7 @@ export const Nav = () => {
         {openMenu && (
           <div
             id="menu"
-            className="fixed z-50 inset-0 w-screen h-screen bg-black/50"
+            className="fixed z-50 inset-0 w-full h-screen bg-black/50"
           >
             <div className="h-full bg-white w-2xs fixed p-4 right-0">
               {/* icono de cierre del menu */}

@@ -29,39 +29,55 @@ const categoriasDestacadas: CategoriaInt[] = [
 
 const CategDest = () => {
   return (
-    <section className="px-4 py-10 bg-blue-50 dark:bg-gray-900 min-h-screen font-inter">
+    <section className="px-4 py-10 bg-blue-50 dark:bg-gray-900 h-auto font-inter">
       {/* Titulo y descripcion seccion categorias destacadas */}
-      <div className="text-center mb-8">
+      <div
+        className="text-center mb-8 px-7
+      sm:px-15
+      md:px-15"
+      >
         <h2 className="text-3xl font-extrabold text-gray-900 dark:text-blue-400 font-ubuntu mb-7">
           Categorías Destacadas
         </h2>
-        <p className="mt-2 text-lg text-gray-600 dark:text-gray-300 max-w-sm mx-auto">
+        <p className="mt-2 text-lg text-gray-600 dark:text-gray-300 mx-auto">
           Explora nuestras categorías más populares y encuentra el equipo
           perfecto para ti.
         </p>
       </div>
       {/* Fin Titulo y descripcion seccion categorias destacadas */}
       {/*  Lista de categorias destacadas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
+      <div className="flex flex-wrap justify-center items-center gap-6">
         {categoriasDestacadas.map((categoria) => (
           <div
             key={categoria.id}
-            className="flex flex-col justify-center items-center w-full py-4 px-2 rounded-lg shadow-md bg-gray-700"
+            className="flex flex-col w-full max-w-[400px] justify-center items-center py-4 px-2 rounded-lg shadow-md bg-gray-700
+            /* estilos para md */
+            md:flex-row md:max-w-[600px] md:gap-6 md:p-8
+            hover:scale-105 transition-transform duration-300"
           >
             <img
               src={categoria.imagen}
               alt={`imagen de ${categoria.nombre}`}
-              className="w-60 h-60 object-cover mb-6 rounded-full  shadow-xl shadow-cyan-100/50"
+              className="w-60 h-60 object-cover mb-6 rounded-full  shadow-xl shadow-cyan-100/50 
+              /* md estilos tablet */
+              md:m-0 md:p-0"
             />
-            <h3 className="text-xl text-center font-semibold text-white/80 dark:text-gray-200">
-              {categoria.nombre}
-            </h3>
-            <Link
-              to={`/categorias/${categoria.id}`}
-              className="text-white hover:underline bg-blue-700 px-8 py-2 rounded-2xl mt-4"
+            <div
+              className="flex flex-col justify-center items-center
+            md:gap-5"
             >
-              Ver más
-            </Link>
+              <h3 className="text-xl text-center font-semibold text-white/80 dark:text-gray-200">
+                {categoria.nombre}
+              </h3>
+              <Link
+                to={`/categorias/${categoria.id}`}
+                className="text-white bg-blue-700 px-8 py-2 rounded-2xl mt-4 decoration-none
+                md:text-lg md:px-10 md:py-3
+                hover:bg-blue-600 transition-colors duration-300"
+              >
+                Ver más
+              </Link>
+            </div>
           </div>
         ))}
       </div>

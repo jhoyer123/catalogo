@@ -3,7 +3,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { DetailProduct } from "./pages/DetailProduct";
 import { Inicio } from "./pages/Inicio";
-import { Productos } from "./pages/Productos";
+import { Catalogo } from "./pages/Catalogo";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/sobre-nosotros" element={<About />} />
-        <Route path="/catalogo" element={<Productos />} />
+        <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/detallesProducto" element={<DetailProduct />} />
         <Route path="/contacto" element={<Contact />} />
       </Routes>

@@ -2,7 +2,7 @@ import { SocialRed } from "../contact/SocialRed";
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-6 font-sans text-sm">
+    <footer className="bg-gray-800 text-white py-6 font-sans text-sm md:text-lg relative bottom-0 w-full">
       <div className="container mx-auto text-center">
         {/* bloque informativo */}
         <div className="flex flex-col">

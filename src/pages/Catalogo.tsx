@@ -363,7 +363,7 @@ interface estadoProd {
 const estadosProd: estadoProd[] = [{ id: 2, nombre: "oferta" }];
 /* fin datos de prueba */
 
-export const Productos = () => {
+export const Catalogo = () => {
   /* estados de parametors */
   const [searchParams] = useSearchParams();
   /* estados para los estilos */
@@ -469,16 +469,16 @@ export const Productos = () => {
     <>
       <div
         id="productos"
-        className="pb-6 bg-white h-auto font-inter mt-12 w-full"
+        className="pb-6 bg-white h-auto font-inter mt-12 w-full md:mt-15"
       >
         {/* <h2 className="text-2xl font-bold text-center text-white mb-4 font-ubuntu">
         Nuestros Productos
       </h2> */}
         <div className="min-h-dvh">
           {/* Inicio Header barra de busqueda y filtrado */}
-          <div className="flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-300 mb-1  items-center">
+          <div className="flex flex-col gap-1 justify-center w-full sticky top-12 z-10 bg-gray-300 mb-1  items-center md:top-15">
             <div className="px-2 py-2 max-w-[500px] w-full sm:max-w-[600px]">
-              <div className="flex gap-3 w-full">
+              <div className="flex gap-3 w-full items-center justify-center">
                 {/* Botón de busqueda*/}
                 <button
                   // Estilos para el botón circular de la izquierda (gris, redondeado)
@@ -489,8 +489,7 @@ export const Productos = () => {
                 {/* Input de Búsqueda */}
                 <input
                   type="text"
-                  className="bg-white gray-950 text-black px-3 py-1 rounded-full w-full m-0 
-         placeholder-gray-300 focus:outline-none focus:ring-1 transition-all duration-300 max-w-[400px]"
+                  className="bg-white gray-950 text-black px-3 py-1 rounded-full w-full m-0 placeholder-gray-300 focus:outline-none focus:ring-1 transition-all duration-300 max-w-[400px]"
                   placeholder="Buscar productos..."
                   value={terminoBusqueda}
                   onChange={(e) => setTerminoBusqueda(e.target.value)}
@@ -512,18 +511,18 @@ export const Productos = () => {
 
           {/* Inicio grid productos */}
           <div
-            className="grid grid-cols-1 gap-1.5 px-6 py-1.5 max-w-[420px] mx-auto
+            className="grid grid-cols-1 grid-ce gap-1.5 px-6 py-1.5 max-w-[420px] mx-auto  place-content-around
         /* estilos para tablets */
-        sm:grid-cols-2 sm:gap-2.5 sm:p-1 sm:max-w-[800px]
+        sm:grid-cols-2 sm:gap-1.5 sm:p-1 sm:max-w-[800px]
         /* estilos para pantallas grandes */
-        md:grid-cols-3 md:max-w-[1100px]"
+        md:grid-cols-2"
           >
             {productosPagina.map((producto) => (
               /* Card de producto */
               <div
                 key={producto.id + "-" + producto.nombre}
-                className="bg-white rounded-xl shadow-lg flex flex-col 
-            border border-gray-200 overflow-hidden my-1 h-auto"
+                className="bg-white rounded-xl shadow-lg flex flex-col border border-gray-200 overflow-hidden my-1 h-auto
+                w-full max-w-[370px] mx-auto"
               >
                 <div className="w-full h-65 flex justify-center items-center mb-4 bg-gray-100 rounded-lg">
                   <img
