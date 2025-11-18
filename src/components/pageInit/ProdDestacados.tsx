@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { type ProductoInt } from "../interfaces/Producto";
+import { type ProductoInt } from "../../interfaces/Producto";
 import "./stylesPD.css";
 
 const productos: ProductoInt[] = [
