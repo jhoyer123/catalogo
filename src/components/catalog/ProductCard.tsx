@@ -7,7 +7,7 @@ interface ProductCardProps {
 }
 
 const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
-  console.log("🔄 Re-render <ProductCard />:", producto.id);
+  //console.log("🔄 Re-render <ProductCard />:", producto.id);
   //const navigate = useNavigate();
 
   return (
@@ -67,6 +67,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
               {/* Botón Minimalista */}
               <Link
                 to={`/detallesProducto/${producto.id}`}
+                state={{ from: location.pathname + location.search }}
                 // Borde gris claro (400) | Hover: Fondo oscuro (800) y texto claro (Base)
                 className="group/btn relative p-3 rounded-full border border-[#D4D4D4] hover:bg-[#262626] hover:border-[#262626] transition-all duration-300"
                 aria-label="Ver detalles"

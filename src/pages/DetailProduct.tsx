@@ -10,6 +10,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 /* context */
 import { ProductsContext } from "../context/ProductsContext";
+import { useLocation } from "react-router-dom";
 
 export const DetailProduct = () => {
   const [producto, setProducto] = React.useState<ProductoInt>();
@@ -46,6 +47,8 @@ export const DetailProduct = () => {
           100
       )
     : 0;
+  const location = useLocation();
+  console.log(location.state);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#FAFAFA] to-[#F5F5F5] pt-12 md:pt-15">
@@ -53,7 +56,13 @@ export const DetailProduct = () => {
       <div className="hidden md:block sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E6E6E6] shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => {
+              if (window.history.length > 1) {
+                navigate(-1);
+              } else {
+                navigate("/catalogo"); // o donde quieras mandar si no hay historial
+              }
+            }}
             className="flex items-center gap-2 text-[#404040] hover:text-[#171717] transition-colors duration-200 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />

@@ -1,104 +1,124 @@
 import { Eye, Lightbulb, ShieldMinus } from "lucide-react";
 
-interface itemsAbout {
-  icon: React.ComponentType<any>;
-  title: string;
-  description: string;
-}
-
-const aboutItems: itemsAbout[] = [
+const aboutItems = [
   {
     icon: Eye,
     title: "Misión",
     description:
-      "ofrecer productos tecnológicos de alta calidad con un servicio rápido, seguro y cercano.",
+      "Ofrecer productos tecnológicos de alta calidad con un servicio rápido, seguro y cercano.",
   },
   {
     icon: Lightbulb,
     title: "Visión",
     description:
-      "ser la tienda de tecnología líder en innovación, confianza y atención al cliente en todo el país.",
+      "Ser la tienda de tecnología líder en innovación, confianza y atención al cliente en todo el país.",
   },
   {
     icon: ShieldMinus,
     title: "Valores",
     description:
-      "compromiso, honestidad, excelencia, innovación y servicio humano.",
+      "Compromiso, honestidad, excelencia, innovación y servicio humano.",
   },
 ];
 
 export const About = () => {
   return (
-    <section className="pt-10 bg-gray-50 dark:bg-gray-900 h-auto w-full font-inter md:text-lg mt-12">
-      <div className="mx-auto">
-        {/* Titulo y descripcion seccion acerca de */}
-        <div className="text-center mb-8 max-w-[800px] px-7 mx-auto lg:max-w-[1100px] flex flex-col gap-8">
-          <h2 className="text-3xl font-extrabold text-blue-700 font-ubuntu md:text-4xl">
-            Acerca de{" "}
-            <span className="text-gray-900 dark:text-white">TechNova</span>
+    <section className="py-24 bg-[#FAFAFA] w-full font-inter relative overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* ======================================================
+            1. TÍTULO Y DESCRIPCIÓN
+        ======================================================= */}
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
+          <h2 className="text-4xl sm:text-5xl font-black font-ubuntu tracking-tight text-[#0A0A0A]">
+            Acerca de <span className="text-[#404040]">TechZone</span>
           </h2>
-          <p className="mt-2 text-md text-gray-900 dark:text-gray-300 mx-auto">
-            Conectando personas con la mejor tecnología, creemos que la
-            innovación debe estar al alcance de todos. Desde nuestros inicios,
-            trabajamos para ofrecer productos de calidad, precios justos y
-            atención personalizada.
+
+          <p className="text-lg text-[#555] leading-relaxed">
+            Conectamos personas con la mejor tecnología del mercado. Creemos en
+            soluciones reales, precios justos y una atención que marque la
+            diferencia.
           </p>
         </div>
-        {/* Fin Titulo y descripcion seccion acerca de */}
 
-        {/* imgen portada */}
-        {/* <img
-          src="https://i.pinimg.com/1200x/8d/c2/f0/8dc2f090577b59234560a901e4f05c8c.jpg"
-          alt="fondo about us technova imagen de una computadora moderna"
-          className="w-full mb-6 max-h-[300px]"
-        /> */}
-        {/* Fin imagen portada */}
+        {/* ======================================================
+            2. HISTORIA
+        ======================================================= */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center mb-14">
+          {/* Imagen */}
+          <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-lg group">
+            <img
+              src="https://i.pinimg.com/1200x/ad/65/2b/ad652b68a8da4fb6311990ba03e5801e.jpg"
+              alt="TechZone Store"
+              className="w-full h-[460px] object-cover transform group-hover:scale-105 transition duration-700"
+            />
+          </div>
 
-        {/* Contenido principal Historia*/}
-        <div className="flex flex-col gap-8 items-center text-center mb-8 max-w-[900px] mx-auto px-4 lg:flex-row lg:text-left lg:gap-16 lg:max-w-[1100px]">
-          <img
-            src="https://i.pinimg.com/736x/12/52/0e/12520e6a9648abb7c452545d6d836b3e.jpg"
-            alt="imagen de la tienda technova"
-          />
-          <div className="flex flex-col px-4 gap-5">
-            <h2 className="text-3xl font-extrabold text-gray-900">
-              Nuestra historia
-            </h2>
-            <p className="mt-2 text-md text-gray-900 dark:text-gray-300 mx-auto">
+          {/* Texto */}
+          <div className="w-full lg:w-1/2 max-w-xl space-y-5">
+            <h3 className="text-3xl font-extrabold text-[#171717] tracking-tight">
+              Nuestra Historia
+            </h3>
+
+            <p className="text-lg text-[#555] leading-relaxed">
               Nacimos con la visión de acercar la tecnología a cada hogar y
-              negocio. Con esfuerzo y pasión, pasamos de un pequeño
-              emprendimiento a una tienda reconocida por su compromiso,
-              confianza y atención al detalle. Hoy seguimos creciendo,
-              impulsados por la satisfacción de nuestros clientes y la confianza
-              que depositan en nosotros.
+              negocio. Con esfuerzo y pasión, pasamos de ser un pequeño
+              emprendimiento a una tienda reconocida por su{" "}
+              <strong>compromiso</strong>, <strong>confianza</strong> y{" "}
+              <strong>atención al detalle</strong>. Hoy seguimos creciendo,
+              impulsados por nuestros clientes.
+            </p>
+
+            <div className="w-28 h-1 bg-[#D4D4D4]"></div>
+
+            <p className="text-sm italic text-[#999]">
+              “La tecnología no espera, nosotros tampoco.”
             </p>
           </div>
         </div>
-        {/* Fin historia */}
 
-        {/* Mision vision */}
-        <div className="flex flex-wrap gap-6 mx-auto items-center justify-center mb-12 px-4 lg:max-w-[1100px]">
-          {aboutItems.map((item) => (
-            <div
-              key={item.title}
-              className="text-center p-6 bg-white rounded-lg shadow-md w-full max-w-[500px] hover:scale-105 transition-transform duration-300"
-            >
-              <item.icon className="mx-auto mb-4" />
-              <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-800 mb-6">{item.description}</p>
-            </div>
-          ))}
+        {/* ======================================================
+            3. MISIÓN - VISIÓN - VALORES
+        ======================================================= */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+          {aboutItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.title}
+                className="
+                  bg-white rounded-xl p-8 shadow-sm border border-[#EAEAEA]
+                  hover:shadow-xl hover:border-[#D3D3D3]
+                  transition-all duration-300 hover:-translate-y-1
+                  text-center
+                "
+              >
+                <div className="mx-auto w-14 h-14 rounded-full flex items-center justify-center bg-[#F5F5F5] mb-5">
+                  <Icon className="w-7 h-7 text-[#0A0A0A]" />
+                </div>
+
+                <h3 className="text-xl font-semibold text-[#0A0A0A] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-[#555] text-base leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
-        {/* Fin mision vision */}
 
-        {/* Llamada a la acción */}
-        <div className="text-center pt-4 pb-8 ">
+        {/* ======================================================
+            4. CTA FINAL
+        ======================================================= */}
+        <div className="text-center">
           <a
             href="/contacto"
-            className="inline-block px-8 py-3 text-base font-medium rounded-full text-white bg-blue-700 shadow-md shadow-blue-500 mt-4 animate-bounce
-            md:px-10 md:py-4 md:text-lg hover:bg-blue-600 transition-colors duration-300"
+            className="
+              inline-block px-10 py-4 rounded-full
+              text-white text-sm font-bold uppercase tracking-wide
+              bg-[#171717] hover:bg-[#333]
+              shadow-lg transition-all
+            "
           >
             Contáctanos Hoy
           </a>

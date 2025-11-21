@@ -11,7 +11,7 @@ export const productsMock: ProductoInt[] = [
       "https://i.pinimg.com/1200x/84/2a/10/842a1049724bf438d6d2df75999fb845.jpg",
     descripcion:
       "Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd /n Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd",
-    categoria: "Periféricos",
+    categoria: "Laptops y Notebooks",
     oferta: true,
     descOferta: "15% de descuento, ¡carga tu ecosistema!",
     nuevoPrecio: 39.09,
@@ -76,7 +76,7 @@ export const productsMock: ProductoInt[] = [
       "https://i.pinimg.com/736x/2c/74/c1/2c74c189d1f192645b8a1663fd7bd188.jpg",
     descripcion:
       "Proyector con resolución nativa 1080p, corrección trapezoidal automática y sistema operativo Android TV integrado.",
-    categoria: "Audio/Video",
+    categoria: "Computadoras de Escritorio",
     oferta: false,
     descOferta: "No aplica",
     nuevoPrecio: 215.5,

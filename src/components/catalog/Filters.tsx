@@ -30,7 +30,7 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
     setSort,
   } = props;
 
-  console.log("%cRender <Filters>", "color: purple");
+  //console.log("%cRender <Filters>", "color: purple");
 
   // Obtener categorías únicas
   const categories = React.useMemo(() => {

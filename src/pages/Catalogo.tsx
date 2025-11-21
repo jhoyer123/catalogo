@@ -81,12 +81,12 @@ export const Catalogo: React.FC = () => {
 
   // --- compute filtered with memo to avoid expensive re-runs
   const filtered = React.useMemo(() => {
-    console.log("Recalculando filtros:", {
+    /* console.log("Recalculando filtros:", {
       debouncedQuery,
       categoria,
       ofertaOnly,
       sort,
-    });
+    }); */
     return applyFilters(products, {
       query: debouncedQuery,
       categoria: categoria ?? undefined,
