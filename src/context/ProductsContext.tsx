@@ -1,7 +1,8 @@
 // src/context/ProductsContext.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { type ProductoInt } from "../interfaces/Producto";
-import { productsMock } from "../datosPrueba/productsMock";
+//import { productsMock } from "../datosPrueba/productsMock";
+import { supabase } from "../dataBase/supabase";
 
 interface ProductsContextValue {
   products: ProductoInt[];
@@ -13,14 +14,35 @@ export const ProductsContext = React.createContext<
   ProductsContextValue | undefined
 >(undefined);
 
-export const ProductsProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  // Inicialmente usamos productos mock; en producción aquí harías fetch a la API.
-  const [products, setProducts] = React.useState<ProductoInt[]>(productsMock);
+export const ProductsProvider: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
+  const [products, setProducts] = useState<ProductoInt[]>([]);
 
-  // memoizamos el objeto value para que su identidad no cambie salvo cuando products cambie
-  const value = React.useMemo(() => ({ products, setProducts }), [products]);
+  const loadProducts = async () => {
+    const { data, error } = await supabase
+      .from("productos")
+      .select("*,categoria:categorias(nombrecategoria)");
+    /* mapear productos */
+    const productsMapped: ProductoInt[] = (data ?? []).map((p) => ({
+      ...p,
+      categoria: p.categoria.nombrecategoria, // reemplaza objeto por string
+    }));
+    //console.log("Productos cargados desde Supabase:", data);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    setProducts(productsMapped ?? []);
+  };
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const value = { products, setProducts };
 
   return (
     <ProductsContext.Provider value={value}>

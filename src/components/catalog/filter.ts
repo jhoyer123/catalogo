@@ -62,5 +62,7 @@ export function applyFilters(
       );
   }
 
+  console.log(result);
+
   return result;
 }

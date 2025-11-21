@@ -21,13 +21,14 @@ export const DetailProduct = () => {
   const { products } = ctx;
   /* obtener el id de la url */
   const { id } = useParams<{ id: string }>();
-
+  //console.log("productos desde detail products", products);
   useEffect(() => {
     /* const productoGuardado = sessionStorage.getItem("productoDetalle");
     if (productoGuardado) {
       setProducto(JSON.parse(productoGuardado));
     } */
-    const productoA = products.find((el) => el.id === Number(id));
+    const productoA = products.find((el) => el.id === String(id));
+    //console.log("producto encontrado:", productoA);
     setProducto(productoA);
   }, [products, id]);
 
@@ -63,10 +64,12 @@ export const DetailProduct = () => {
                 navigate("/catalogo"); // o donde quieras mandar si no hay historial
               }
             }}
-            className="flex items-center gap-2 text-[#404040] hover:text-[#171717] transition-colors duration-200 group"
+            className="cursor-pointer flex items-center gap-2 text-[#404040] hover:text-[#171717] transition-colors duration-200 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
-            <span className="font-medium">Volver al catálogo</span>
+            <span className="font-medium">
+              Volver al catálogo
+            </span>
           </button>
         </div>
       </div>
