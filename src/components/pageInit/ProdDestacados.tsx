@@ -5,7 +5,7 @@ import "./stylesPD.css";
 
 const productos: ProductoInt[] = [
   {
-    id: 1,
+    id: "a",
     nombre:
       "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor",
     precio: 45.99,
@@ -19,7 +19,7 @@ const productos: ProductoInt[] = [
     nuevoPrecio: 39.09,
   },
   {
-    id: 2,
+    id: "b",
     nombre: "Webcam 4K con Autoenfoque",
     precio: 129.0,
     imagen:
@@ -32,7 +32,7 @@ const productos: ProductoInt[] = [
     nuevoPrecio: 129.0,
   },
   {
-    id: 3,
+    id: "c",
     nombre: "Drone Plegable con GPS y Cámara 2.7K",
     precio: 350.75,
     imagen:
@@ -45,7 +45,7 @@ const productos: ProductoInt[] = [
     nuevoPrecio: 280.6,
   },
   {
-    id: 4,
+    id: "d",
     nombre:
       "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor sd de lo kmxcxcxcx xcxcx xcxc xcxc ejro ya que es ssss sss aaaaaaaaaaa ",
     precio: 45.99,
@@ -59,7 +59,7 @@ const productos: ProductoInt[] = [
     nuevoPrecio: 39.09,
   },
   {
-    id: 5,
+    id: "e",
     nombre: "Webcam 4K con Autoenfoque",
     precio: 129.0,
     imagen:
@@ -72,7 +72,7 @@ const productos: ProductoInt[] = [
     nuevoPrecio: 129.0,
   },
   {
-    id: 6,
+    id: "f",
     nombre: "Drone Plegable con GPS y Cámara 2.7K",
     precio: 350.75,
     imagen:
