@@ -1,9 +1,9 @@
 // src/components/Filters.tsx
-import React from "react";
+import React, { useState } from "react";
 import { type ProductoInt } from "../../interfaces/Producto";
 
 interface FiltersProps {
-  allProducts: ProductoInt[]; // en tu proyecto real reemplazas con tu tipo ProductoInt
+  allProducts: ProductoInt[];
   query: string;
   setQuery: (v: string) => void;
 
@@ -30,27 +30,61 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
     setSort,
   } = props;
 
-  //console.log("%cRender <Filters>", "color: purple");
+  // Estado para abrir/cerrar en móvil
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Obtener categorías únicas
   const categories = React.useMemo(() => {
     const cats = Array.from(new Set(allProducts.map((p) => p.categoria)));
     return cats;
   }, [allProducts]);
 
   return (
-    // 1. Contenedor principal: Fondo claro (100) y borde/sombra sutil (400)
-    <div className="h-full p-6 bg-[#F5F5F5] border border-[#D4D4D4] sm:rounded-xl shadow-lg">
-      {/* Título con estilo Serif para elegancia */}
-      {/* Título: Texto oscuro (800) y separador gris (400) */}
-      <h2 className="text-2xl font-serif text-[#262626] mb-6 border-b border-[#D4D4D4] pb-4 tracking-wide">
-        Filtros
-      </h2>
+    <div className="h-fit w-full bg-[#F5F5F5] border border-[#D4D4D4] sm:rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+      {/* CABECERA (Header) */}
+      <div
+        className="p-3 md:p-6 flex justify-between items-center cursor-pointer lg:cursor-default"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h2 className="text-2xl font-serif text-[#262626] tracking-wide">
+          Filtros
+        </h2>
 
-      <div className="space-y-6">
+        {/* Icono Chevron (Solo visible en móvil/tablet < lg) */}
+        <span
+          className={`lg:hidden text-[#737373] transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </span>
+      </div>
+
+      {/* CONTENIDO (Body) */}
+      {/* Lógica: 
+          - hidden en móvil por defecto (si !isOpen)
+          - block en móvil si isOpen
+          - lg:block SIEMPRE visible en escritorio
+          - Añadimos padding y borde superior solo si está visible
+      */}
+      <div
+        className={`px-6 pb-6 space-y-6 ${
+          isOpen ? "block border-t border-[#D4D4D4] pt-6" : "hidden"
+        } lg:block lg:border-t lg:pt-0 lg:border-none`}
+      >
         {/* BUSCADOR */}
         <div className="group">
-          {/* Etiqueta: Gris medio (500) */}
           <label className="block mb-2 text-xs font-bold tracking-[0.2em] text-[#737373] uppercase">
             Buscar
           </label>
@@ -59,12 +93,8 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar producto..."
-              // Input: Fondo muy claro (Base/50), Texto oscuro (800), Placeholder gris (400)
-              // Focus: Borde y ring con color de acento (Gris 700)
               className="w-full bg-[#FAFAFA] text-[#262626] placeholder-[#D4D4D4] border border-[#A3A3A3]/50 rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-[#404040] focus:ring-1 focus:ring-[#404040] transition-all duration-300"
             />
-            {/* Icono de Lupa decorativo */}
-            {/* Icono: Gris medio (500) | Focus: Gris oscuro (700) */}
             <svg
               className="absolute left-3 top-3.5 w-4 h-4 text-[#737373] group-focus-within:text-[#404040] transition-colors"
               fill="none"
@@ -83,7 +113,6 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
 
         {/* CATEGORÍA */}
         <div>
-          {/* Etiqueta: Gris medio (500) */}
           <label className="block mb-2 text-xs font-bold tracking-[0.2em] text-[#737373] uppercase">
             Categoría
           </label>
@@ -93,11 +122,8 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
               onChange={(e) =>
                 setCategoria(e.target.value === "" ? null : e.target.value)
               }
-              // Select: Fondo muy claro (Base/50), Texto oscuro (800)
-              // Focus: Borde y ring con color de acento (Gris 700)
               className="w-full appearance-none bg-[#FAFAFA] text-[#262626] border border-[#A3A3A3]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#404040] focus:ring-1 focus:ring-[#404040] transition-all duration-300 cursor-pointer"
             >
-              {/* Opciones del Select: Fondo claro (100) y Texto gris medio/oscuro (700/800) */}
               <option value="" className="bg-[#F5F5F5] text-[#404040]">
                 Todas las colecciones
               </option>
@@ -111,7 +137,6 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
                 </option>
               ))}
             </select>
-            {/* Icono de flecha personalizado para el select: Gris oscuro (700) */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#404040]">
               <svg
                 className="h-4 w-4"
@@ -132,7 +157,6 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
 
         {/* ORDENAMIENTO */}
         <div>
-          {/* Etiqueta: Gris medio (500) */}
           <label className="block mb-2 text-xs font-bold tracking-[0.2em] text-[#737373] uppercase">
             Ordenar por
           </label>
@@ -142,10 +166,8 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
               onChange={(e) =>
                 setSort(e.target.value === "" ? null : e.target.value)
               }
-              // Select: Fondo muy claro (Base/50), Texto oscuro (800)
               className="w-full appearance-none bg-[#FAFAFA] text-[#262626] border border-[#A3A3A3]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#404040] focus:ring-1 focus:ring-[#404040] transition-all duration-300 cursor-pointer"
             >
-              {/* Opciones del Select: Fondo claro (100) y Texto gris medio/oscuro (700/800) */}
               <option value="" className="bg-[#F5F5F5] text-[#404040]">
                 Destacados
               </option>
@@ -159,7 +181,6 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
                 Precio: Mayor a menor
               </option>
             </select>
-            {/* Icono de flecha personalizado para el select: Gris oscuro (700) */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#404040]">
               <svg
                 className="h-4 w-4"
@@ -178,10 +199,9 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
           </div>
         </div>
 
-        {/* SOLO OFERTAS (Diseño Switch/Toggle) */}
+        {/* SOLO OFERTAS */}
         <div className="pt-4 border-t border-[#D4D4D4]">
           <label className="flex items-center justify-between cursor-pointer group">
-            {/* Etiqueta: Texto oscuro (800) | Hover: Gris oscuro (700) */}
             <span className="font-medium text-[#262626] group-hover:text-[#404040] transition-colors">
               Solo ofertas especiales
             </span>
@@ -192,12 +212,7 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
                 onChange={(e) => setOfertaOnly(e.target.checked)}
                 className="sr-only peer"
               />
-              {/* Track del switch */}
-              <div
-                // Base: Gris claro (400) | Checked: Gris oscuro (700)
-                // Borde: Gris medio (500)
-                className="w-11 h-6 bg-[#D4D4D4] peer-focus:outline-none border border-[#737373] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-[#FFFFFF] after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#404040] peer-checked:after:bg-[#FFFFFF]"
-              ></div>
+              <div className="w-11 h-6 bg-[#D4D4D4] peer-focus:outline-none border border-[#737373] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-[#FFFFFF] after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#404040] peer-checked:after:bg-[#FFFFFF]"></div>
             </div>
           </label>
         </div>
@@ -206,5 +221,4 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
   );
 });
 
-// Agregamos displayName para evitar advertencias con React.memo
 Filters.displayName = "Filters";

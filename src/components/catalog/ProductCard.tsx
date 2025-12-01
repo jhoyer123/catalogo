@@ -20,7 +20,9 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
         <div className="absolute inset-0 bg-[#A3A3A3]/0 group-hover:bg-[#A3A3A3]/20 transition-colors duration-500 z-10"></div>
 
         <img
+          //src={`${product.imageUrl}?width=350&quality=70`}
           src={producto.imagen}
+          loading="lazy"
           alt={producto.nombre}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />

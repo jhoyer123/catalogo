@@ -158,8 +158,10 @@ export const Catalogo: React.FC = () => {
     // La selección de texto también cambia para ser legible en el nuevo fondo claro.
     <div className="min-h-screen bg-linear-to-b from-[#FFFFFF] to-[#F5F5F5] text-[#262626] font-sans selection:bg-[#262626] selection:text-[#FFFFFF]">
       {/* Contenido principal */}
-      <main className="container pt-17 mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-20 flex flex-col lg:flex-row gap-8 lg:gap-12
-      md:py-20 sm:pt-20">
+      <main
+        className="container pt-17 mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-20 flex flex-col lg:flex-row gap-8 lg:gap-12
+      md:py-20 sm:pt-20"
+      >
         {/* ASIDE: Filtros (Sidebar) */}
         <aside className="w-full lg:w-1/4 lg:min-w-[300px] shrink-0">
           <div className="sticky top-20">
@@ -187,7 +189,7 @@ export const Catalogo: React.FC = () => {
 
           {/* --- PAGINACIÓN ELEGANTE --- */}
           {/* Separador de paginación: Borde gris claro (400) */}
-          <div className="flex flex-col items-center justify-center gap-8 mt-16 pt-8 border-t border-[#D4D4D4]">
+          <div className=" flex flex-col items-center justify-center gap-8 mt-16 pt-8 border-t border-[#D4D4D4]">
             <div className="flex items-center gap-4 sm:gap-8 w-full justify-center">
               {/* Botón ANTERIOR */}
               <button
@@ -195,7 +197,7 @@ export const Catalogo: React.FC = () => {
                 disabled={page === 1}
                 // Borde gris (500), Texto oscuro (800)
                 // Hover: Fondo oscuro (800), Borde oscuro (800), Texto claro (Base)
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-[#737373] text-[#262626] transition-all duration-300 hover:bg-[#262626] hover:border-[#262626] hover:text-[#FFFFFF] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#262626] disabled:hover:border-[#737373] disabled:cursor-not-allowed"
+                className="group flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full border border-[#737373] text-[#262626] transition-all duration-300 hover:bg-[#262626] hover:border-[#262626] hover:text-[#FFFFFF] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#262626] disabled:hover:border-[#737373] disabled:cursor-not-allowed"
               >
                 <svg
                   className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"
@@ -230,7 +232,7 @@ export const Catalogo: React.FC = () => {
                 onClick={() => setPage(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
                 // Mismo estilo que el botón anterior
-                className="group flex items-center gap-2 px-6 py-3 rounded-full border border-[#737373] text-[#262626] transition-all duration-300 hover:bg-[#262626] hover:border-[#262626] hover:text-[#FFFFFF] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#262626] disabled:hover:border-[#737373] disabled:cursor-not-allowed"
+                className="group flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full border border-[#737373] text-[#262626] transition-all duration-300 hover:bg-[#262626] hover:border-[#262626] hover:text-[#FFFFFF] disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#262626] disabled:hover:border-[#737373] disabled:cursor-not-allowed"
               >
                 <span className="font-medium tracking-wide text-sm uppercase">
                   Siguiente

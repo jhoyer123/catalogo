@@ -23,12 +23,15 @@ export const ProductsProvider: React.FC<{
     const { data, error } = await supabase
       .from("productos")
       .select("*,categoria:categorias(nombrecategoria)");
+
+    /* se han vuelto a traer los datos denuevo */
+
     /* mapear productos */
     const productsMapped: ProductoInt[] = (data ?? []).map((p) => ({
       ...p,
       categoria: p.categoria.nombrecategoria, // reemplaza objeto por string
     }));
-    //console.log("Productos cargados desde Supabase:", data);
+    console.log("🔄 Productos cargados desde Supabase:", data);
 
     if (error) {
       console.error(error);

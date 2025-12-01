@@ -87,6 +87,7 @@ export const Contact = () => {
             <img
               src="https://i.pinimg.com/1200x/18/50/47/185047d348b2b819786c034472fcb08d.jpg"
               alt="Atención al cliente"
+              loading="lazy"
               className="relative rounded-2xl border-2 border-[#E6E6E6] shadow-xl w-full h-full object-cover hover:scale-[1.02] transition-transform duration-300"
             />
           </div>

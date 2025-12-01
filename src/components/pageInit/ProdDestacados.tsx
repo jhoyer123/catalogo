@@ -1,92 +1,22 @@
 import { Link } from "react-router-dom";
 import { type ProductoInt } from "../../interfaces/Producto";
-
+import { ProductsContext } from "../../context/ProductsContext";
 import "./stylesPD.css";
-
-const productos: ProductoInt[] = [
-  {
-    id: "a",
-    nombre:
-      "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor",
-    precio: 45.99,
-    imagen:
-      "https://i.pinimg.com/1200x/84/2a/10/842a1049724bf438d6d2df75999fb845.jpg",
-    descripcion:
-      "Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd /n Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd",
-    categoria: "Accesorios Móviles",
-    oferta: true,
-    descOferta: "15% de descuento, ¡carga tu ecosistema!",
-    nuevoPrecio: 39.09,
-  },
-  {
-    id: "b",
-    nombre: "Webcam 4K con Autoenfoque",
-    precio: 129.0,
-    imagen:
-      "https://i.pinimg.com/1200x/ea/81/ab/ea81abbd0c34c69ac77b1eb857b04374.jpg",
-    descripcion:
-      "Cámara web con resolución Ultra HD 4K, micrófono con cancelación de ruido y lente gran angular. Perfecta para streaming y videollamadas.",
-    categoria: "Periféricos",
-    oferta: false,
-    descOferta: "No aplica",
-    nuevoPrecio: 129.0,
-  },
-  {
-    id: "c",
-    nombre: "Drone Plegable con GPS y Cámara 2.7K",
-    precio: 350.75,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Drone compacto y plegable con 30 minutos de vuelo, GPS para retorno automático y cámara estabilizada para videos aéreos.",
-    categoria: "Gadgets",
-    oferta: true,
-    descOferta: "20% OFF en la versión Combo Fly More",
-    nuevoPrecio: 280.6,
-  },
-  {
-    id: "d",
-    nombre:
-      "Estación de Carga Inalámbrica 3 en 1 y es lo mejor si vamos por lo mejor sd de lo kmxcxcxcx xcxcx xcxc xcxc ejro ya que es ssss sss aaaaaaaaaaa ",
-    precio: 45.99,
-    imagen:
-      "https://i.pinimg.com/1200x/84/2a/10/842a1049724bf438d6d2df75999fb845.jpg",
-    descripcion:
-      "Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd /n Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd Cargador rápido para teléfono, reloj inteligente y auriculares al mismo tiempo. Diseño compacto y minimalista. ssss ss esto nose no salta. dasdasd asdasd",
-    categoria: "Accesorios Móviles",
-    oferta: true,
-    descOferta: "15% de descuento, ¡carga tu ecosistema!",
-    nuevoPrecio: 39.09,
-  },
-  {
-    id: "e",
-    nombre: "Webcam 4K con Autoenfoque",
-    precio: 129.0,
-    imagen:
-      "https://i.pinimg.com/1200x/ea/81/ab/ea81abbd0c34c69ac77b1eb857b04374.jpg",
-    descripcion:
-      "Cámara web con resolución Ultra HD 4K, micrófono con cancelación de ruido y lente gran angular. Perfecta para streaming y videollamadas.",
-    categoria: "Periféricos",
-    oferta: false,
-    descOferta: "No aplica",
-    nuevoPrecio: 129.0,
-  },
-  {
-    id: "f",
-    nombre: "Drone Plegable con GPS y Cámara 2.7K",
-    precio: 350.75,
-    imagen:
-      "https://i.pinimg.com/736x/45/c9/e9/45c9e93a473a8f9579c06185d63c7995.jpg",
-    descripcion:
-      "Drone compacto y plegable con 30 minutos de vuelo, GPS para retorno automático y cámara estabilizada para videos aéreos.",
-    categoria: "Gadgets",
-    oferta: true,
-    descOferta: "20% OFF en la versión Combo Fly More",
-    nuevoPrecio: 280.6,
-  },
-];
+import { useContext, useEffect, useState } from "react";
 
 const ProdDestacados = () => {
+  const [productos, setProductos] = useState<ProductoInt[]>([]);
+  // traer productos del contexto
+  const ctx = useContext(ProductsContext);
+  if (!ctx) return null;
+  const { products } = ctx;
+
+  // filtrar productos destacados (por ahora los primeros 6)
+  useEffect(() => {
+    const destacados = products.slice(0, 6);
+    setProductos(destacados);
+  }, [products]);
+
   return (
     <section className=" bg-white dark:bg-gray-900 font-inter py-6 h-auto">
       {/* Titulo y descripcion seccion productos destacados */}
@@ -148,7 +78,7 @@ const ProdDestacados = () => {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 z-10"></div>
 
               {/* Badge de Categoría (Estilo Minimalista) */}
-              <div className="absolute top-4 left-4 z-20">
+              <div className="absolute top-4 left-4 z-10">
                 <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-[#171717] text-white rounded-sm shadow-sm">
                   {producto.categoria}
                 </span>

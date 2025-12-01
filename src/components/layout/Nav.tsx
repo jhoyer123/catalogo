@@ -9,7 +9,7 @@ interface menuItemsP {
 const menuItems: menuItemsP[] = [
   { src: "/", name: "Inicio" },
   { src: "/sobre-nosotros", name: "Sobre Nosotros" },
-  { src: "/catalogo?ofertaOnly=true", name: "Ofertas" },
+  { src: "/catalogo?oferta=1", name: "Ofertas" },
   { src: "/catalogo", name: "Catálogo" },
   { src: "/contacto", name: "Contactos" },
 ];
