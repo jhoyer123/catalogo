@@ -19,33 +19,25 @@ export const DetailProduct = () => {
   const ctx = useContext(ProductsContext);
   if (!ctx) return null; // o fallback UI
   const { products } = ctx;
+
   /* obtener el id de la url */
   const { id } = useParams<{ id: string }>();
-  //console.log("productos desde detail products", products);
   useEffect(() => {
-    /* const productoGuardado = sessionStorage.getItem("productoDetalle");
-    if (productoGuardado) {
-      setProducto(JSON.parse(productoGuardado));
-    } */
     const productoA = products.find((el) => el.id === String(id));
-    //console.log("producto encontrado:", productoA);
     setProducto(productoA);
   }, [products, id]);
 
   /* siempre empezar desde arriba de la pagina */
   useLayoutEffect(() => {
-    // Se ejecuta de forma síncrona DESPUÉS del render,
-    // pero ANTES de que el navegador pinte la pantalla.
     window.scrollTo(0, 0);
   }, []);
 
-  const ahorroTotal = producto?.oferta
-    ? (producto.precio - (producto?.nuevoPrecio || 0)).toFixed(2)
+  const ahorroTotal = producto?.isOfferActive
+    ? (producto.price - (producto?.priceOffer || 0)).toFixed(2)
     : 0;
-  const porcentajeDesc = producto?.oferta
+  const porcentajeDesc = producto?.isOfferActive
     ? Math.round(
-        ((producto.precio - (producto?.nuevoPrecio || 0)) / producto.precio) *
-          100
+        ((producto.price - (producto?.priceOffer || 0)) / producto.price) * 100
       )
     : 0;
   const location = useLocation();
@@ -67,9 +59,7 @@ export const DetailProduct = () => {
             className="cursor-pointer flex items-center gap-2 text-[#404040] hover:text-[#171717] transition-colors duration-200 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" />
-            <span className="font-medium">
-              Volver al catálogo
-            </span>
+            <span className="font-medium">Volver al catálogo</span>
           </button>
         </div>
       </div>
@@ -89,7 +79,7 @@ export const DetailProduct = () => {
               </button>
 
               {/* Badge de oferta */}
-              {producto?.oferta && (
+              {producto?.isOfferActive && (
                 <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
                   <div className="bg-linear-to-r from-[#171717] to-[#404040] text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-pulse">
                     <Sparkles className="w-4 h-4" />
@@ -103,8 +93,8 @@ export const DetailProduct = () => {
               {/* Imagen del producto */}
               <div className="relative aspect-square w-full max-w-lg mx-auto">
                 <img
-                  src={producto?.imagen}
-                  alt={producto?.nombre}
+                  src={producto?.product_images[0]?.image_url || ""}
+                  alt={producto?.nameProd}
                   className="w-full h-full object-contain rounded-xl hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -117,14 +107,14 @@ export const DetailProduct = () => {
                 {/* Nombre del producto */}
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold text-[#171717] mb-2">
-                    {producto?.nombre}
+                    {producto?.nameProd}
                   </h1>
                   <div className="h-1 w-20 bg-linear-to-r from-[#404040] to-[#737373] rounded-full"></div>
                 </div>
 
                 {/* Sección de precios */}
                 <div className="space-y-4">
-                  {producto?.oferta ? (
+                  {producto?.isOfferActive ? (
                     <>
                       {/* Precio con oferta */}
                       <div className="bg-linear-to-br from-[#F5F5F5] to-[#E6E6E6] rounded-xl p-6 border-2 border-[#171717] relative overflow-hidden">
@@ -139,10 +129,10 @@ export const DetailProduct = () => {
 
                         <div className="flex items-baseline gap-4 mb-2">
                           <span className="text-2xl md:text-3xl text-[#737373] line-through">
-                            ${producto?.precio.toFixed(2)}
+                            ${producto?.price.toFixed(2)}
                           </span>
                           <span className="text-4xl md:text-5xl font-bold text-[#171717]">
-                            ${producto?.nuevoPrecio?.toFixed(2)}
+                            ${producto?.priceOffer?.toFixed(2)}
                           </span>
                         </div>
 
@@ -159,7 +149,8 @@ export const DetailProduct = () => {
                         <div className="flex items-center justify-center gap-3">
                           <Sparkles className="w-5 h-5 animate-pulse" />
                           <p className="font-bold text-center text-sm md:text-base">
-                            {producto?.descOferta}
+                            {producto?.slug ||
+                              "¡Aprovecha esta oferta por tiempo limitado!"}
                           </p>
                           <Sparkles className="w-5 h-5 animate-pulse" />
                         </div>
@@ -175,7 +166,7 @@ export const DetailProduct = () => {
                         </span>
                       </div>
                       <span className="text-4xl md:text-5xl font-bold text-[#171717]">
-                        ${producto?.precio.toFixed(2)}
+                        ${producto?.price.toFixed(2)}
                       </span>
                     </div>
                   )}
@@ -188,7 +179,7 @@ export const DetailProduct = () => {
                     Descripción
                   </h3>
                   <p className="text-[#525252] leading-relaxed text-base">
-                    {producto?.descripcion}
+                    {producto?.description}
                   </p>
                 </div>
               </div>
