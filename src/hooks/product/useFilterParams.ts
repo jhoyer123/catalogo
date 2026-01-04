@@ -16,6 +16,8 @@ export const useFilterParams = (params: FilterOptions) => {
   const [offerOnly, setOfferOnly] = useState<boolean>(
     params.offerOnly || false
   );
+  //para la paginación
+  const [page, setPage] = useState<number>(params.page || 1);
 
   //funciones para setear los parametros de filtro
   //para el search query
@@ -25,14 +27,21 @@ export const useFilterParams = (params: FilterOptions) => {
   //para la categoría
   const handleSetCategory = (value: string | null) => {
     setCategory(value);
+    setPage(1); // reset page when category changes
   };
   //para el sort
   const handleSetSort = (value: FilterOptions["sort"] | null) => {
     setSort(value);
+    setPage(1); // reset page when sort changes
   };
   //para el filtro de solo ofertas
   const handleSetOfferOnly = (value: boolean) => {
     setOfferOnly(value);
+    setPage(1); // reset page when offerOnly changes
+  };
+  //para la paginación
+  const handleSetPage = (value: number) => {
+    setPage(value);
   };
 
   //retornamos los estados y funciones para actualizar los parametros de filtro
@@ -45,5 +54,7 @@ export const useFilterParams = (params: FilterOptions) => {
     handleSetSort,
     offerOnly,
     handleSetOfferOnly,
+    page,
+    handleSetPage,
   };
 };

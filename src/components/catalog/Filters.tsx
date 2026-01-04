@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { type ProductoInt } from "../../types/product";
 import { useGetCategories } from "@/hooks/category/useGetCategories";
 import type { FilterOptions } from "@/types/filter";
 
 interface FiltersProps {
-  allProducts: ProductoInt[];
   query: string;
   setQuery: (v: string) => void;
 
@@ -20,7 +18,6 @@ interface FiltersProps {
 
 export const Filters: React.FC<FiltersProps> = React.memo((props) => {
   const {
-    allProducts,
     query,
     setQuery,
     categoria,

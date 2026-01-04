@@ -8,7 +8,7 @@ import type { FilterOptions } from "@/types/filter";
 
 //hook para traer los productos
 export const useGetProducts = (dataFilter: FilterOptions) => {
-  return useQuery<ProductoInt[], Error>({
+  return useQuery<{ products: ProductoInt[]; count: number }, Error>({
     queryKey: ["products", dataFilter],
     queryFn: () => getProducts(dataFilter),
   });

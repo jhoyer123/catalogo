@@ -7,14 +7,21 @@ import type { FilterOptions } from "@/types/filter";
 //service para traer los productos
 export const getProducts = async (
   dataFilter: FilterOptions
-): Promise<ProductoInt[]> => {
+): Promise<{ products: ProductoInt[]; count: number }> => {
+
+  //limite de productos
+  const limit = 20;
+  const from = (dataFilter.page - 1) * limit;
+  const to = from + limit - 1;
+
   //definimos la query base
   let query = supabase
     .from("products")
     .select(`*,product_images(image_url),categories(nameCat)`, {
       count: "exact",
     })
-    .is("deleted_at", null);
+    .is("deleted_at", null)
+    .range(from, to);
 
   //filtro de busqueda
   if (dataFilter.query) {
@@ -58,5 +65,5 @@ export const getProducts = async (
     throw new Error("error al obtener los productos: " + error);
   }
 
-  return data as ProductoInt[];
+  return { products: data as ProductoInt[], count: count || 0 };
 };
