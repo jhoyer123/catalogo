@@ -1,7 +1,7 @@
 // src/components/ProductList.tsx
 import React from "react";
 import { ProductCard } from "./ProductCard";
-import { type ProductoInt } from "../../interfaces/Producto";
+import { type ProductoInt } from "../../types/product";
 
 interface ProductListProps {
   items: ProductoInt[]; // cambia a tu tipo ProductoInt
@@ -9,8 +9,6 @@ interface ProductListProps {
 
 export const ProductList: React.FC<ProductListProps> = React.memo(
   ({ items }) => {
-    //console.log("%cRender <ProductList>", "color: green");
-
     if (items.length === 0) {
       return (
         <div className="text-center py-20 text-gray-500">
@@ -22,7 +20,6 @@ export const ProductList: React.FC<ProductListProps> = React.memo(
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
         {items.map((producto) => (
-          //console.log("Rendering ProductCard for:", producto.id),
           <ProductCard key={producto.id} producto={producto} />
         ))}
       </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { type ProductoInt } from "../../interfaces/Producto";
+import { type ProductoInt } from "../../types/product";
 import { ProductsContext } from "../../context/ProductsContext";
 import "./stylesPD.css";
 import { useContext, useEffect, useState } from "react";
@@ -80,13 +80,13 @@ const ProdDestacados = () => {
               {/* Badge de Categoría (Estilo Minimalista) */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-[#171717] text-white rounded-sm shadow-sm">
-                  {producto.categoria}
+                  {producto.categoryId}
                 </span>
               </div>
 
               <img
-                src={producto.imagen}
-                alt={producto.nombre}
+                src={producto.product_images[0]?.image_url}
+                alt={producto.nameProd}
                 className="object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
@@ -96,7 +96,7 @@ const ProdDestacados = () => {
               {/* Título y Decoración */}
               <div className="space-y-3">
                 <h3 className="font-serif text-xl text-[#171717] leading-tight line-clamp-2 min-h-14">
-                  {producto.nombre}
+                  {producto.nameProd}
                 </h3>
                 {/* Línea decorativa: Gris claro a Negro al hacer hover */}
                 <div className="w-12 h-0.5 bg-[#E5E5E5] group-hover:bg-[#171717] transition-colors duration-500"></div>
@@ -106,7 +106,7 @@ const ProdDestacados = () => {
               <div className="mt-4 space-y-5">
                 {/* Visualización de Precios (Lógica adaptada) */}
                 <div>
-                  {producto.oferta ? (
+                  {producto.isOfferActive ? (
                     // CASO OFERTA (Alto Contraste)
                     <div className="flex flex-col">
                       <span className="text-[10px] font-bold tracking-widest text-[#737373] uppercase mb-1">
@@ -114,10 +114,10 @@ const ProdDestacados = () => {
                       </span>
                       <div className="flex items-baseline gap-3">
                         <span className="text-3xl font-light text-[#0A0A0A]">
-                          ${producto.nuevoPrecio}
+                          ${producto.priceOffer}
                         </span>
                         <span className="text-sm text-[#A3A3A3] line-through">
-                          ${producto.precio}
+                          ${producto.price}
                         </span>
                       </div>
                     </div>
@@ -128,7 +128,7 @@ const ProdDestacados = () => {
                         Precio Regular
                       </span>
                       <span className="text-3xl font-light text-[#171717]">
-                        ${producto.precio}
+                        ${producto.price}
                         <span className="text-xs text-[#737373] ml-1 font-normal">
                           USD
                         </span>

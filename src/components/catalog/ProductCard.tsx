@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { type ProductoInt } from "../../interfaces/Producto";
+import { type ProductoInt } from "../../types/product";
 
 interface ProductCardProps {
   producto: ProductoInt;
 }
 
 const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
-  //console.log("🔄 Re-render <ProductCard />:", producto.id);
-  //const navigate = useNavigate();
-
   return (
     // 1. Contenedor principal: Fondo claro (Base/100) y borde/sombra oscuros (400/800)
     <div className="group flex flex-col h-full bg-[#F5F5F5] overflow-hidden rounded-none sm:rounded-xl shadow-lg border border-[#D4D4D4]/50 hover:border-[#737373]/50 transition-all duration-500 hover:-translate-y-1">
@@ -21,16 +18,16 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
 
         <img
           //src={`${product.imageUrl}?width=350&quality=70`}
-          src={producto.imagen}
+          src={producto.product_images[0].image_url}
           loading="lazy"
-          alt={producto.nombre}
+          alt={producto.nameProd}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />
 
         {/* Badge de categoría: Fondo oscuro (800) con texto muy claro (Base/100) */}
         <div className="absolute top-4 left-4 z-10">
           <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-[#262626] text-[#FFFFFF] rounded-sm">
-            {producto.categoria}
+            {producto.categories.nameCat}
           </span>
         </div>
       </div>
@@ -41,7 +38,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
         <div className="space-y-2">
           {/* Título: Texto oscuro (800) para máxima legibilidad */}
           <h3 className="font-serif text-xl sm:text-2xl leading-tight text-[#262626] line-clamp-2 min-h-14">
-            {producto.nombre}
+            {producto.nameProd}
           </h3>
           {/* Línea decorativa que cambia de color en hover (400 a 700) */}
           <div className="w-12 h-0.5 bg-[#D4D4D4] group-hover:bg-[#404040] transition-colors duration-300"></div>
@@ -50,7 +47,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
         {/* Lógica de Precios */}
         <div className="mt-auto pt-2">
           {/* Caso 1: Precio Normal */}
-          {!producto.oferta && (
+          {!producto.isOfferActive && (
             <div className="flex items-end justify-between">
               <div>
                 {/* Etiqueta de precio: Color gris medio (500) */}
@@ -59,7 +56,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
                 </p>
                 {/* Precio: Texto oscuro (800) */}
                 <p className="text-2xl font-light text-[#262626]">
-                  ${producto.precio}
+                  ${producto.price}
                   {/* Unidad: Gris medio (500) */}
                   <span className="text-xs font-normal text-[#737373] ml-1">
                     USD
@@ -93,7 +90,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
           )}
 
           {/* Caso 2: Oferta - Usando un color de acento fuera de la paleta para **distinción** */}
-          {producto.oferta && (
+          {producto.isOfferActive && (
             <div className="flex items-end justify-between w-full">
               <div className="space-y-1">
                 {/* Título de Oferta: Usamos un rojo/naranja distintivo para llamar la atención */}
@@ -103,11 +100,11 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
                 <div className="flex items-baseline gap-3">
                   {/* Precio Nuevo Destacado: Usamos el mismo rojo/naranja fuerte */}
                   <p className="text-2xl font-light text-red-600">
-                    ${producto.nuevoPrecio}
+                    ${producto.priceOffer}
                   </p>
                   {/* Precio Viejo Tachado: Gris medio (500) */}
                   <p className="text-sm text-[#737373] line-through decoration-[#737373]">
-                    ${producto.precio}
+                    ${producto.price}
                   </p>
                 </div>
               </div>
@@ -150,10 +147,12 @@ export const ProductCard = React.memo(
     // Comparación profunda necesaria para evitar renders
     return (
       prevProps.producto.id === nextProps.producto.id &&
-      prevProps.producto.nombre === nextProps.producto.nombre &&
-      prevProps.producto.categoria === nextProps.producto.categoria &&
-      prevProps.producto.precio === nextProps.producto.precio &&
-      prevProps.producto.imagen === nextProps.producto.imagen
+      prevProps.producto.nameProd === nextProps.producto.nameProd &&
+      prevProps.producto.categories.nameCat ===
+        nextProps.producto.categories.nameCat &&
+      prevProps.producto.price === nextProps.producto.price &&
+      prevProps.producto.product_images[0].image_url ===
+        nextProps.producto.product_images[0].image_url
     );
   }
 );

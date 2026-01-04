@@ -1,5 +1,4 @@
-// src/utils/filter.ts
-import { type ProductoInt } from "../../interfaces/Producto";
+/* import { type ProductoInt } from "../../types/product";
 
 export interface FilterOptions {
   query?: string;
@@ -62,7 +61,6 @@ export function applyFilters(
       );
   }
 
-  //console.log(result);
-
   return result;
 }
+ */

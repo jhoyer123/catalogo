@@ -3,7 +3,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { DetailProduct } from "./pages/DetailProduct";
 import { Inicio } from "./pages/Inicio";
-import { Catalogo } from "./pages/Catalogo";
+import { Catalogo } from "./pages/Catalog";
 import { Routes, Route } from "react-router-dom";
 
 const App = () => {

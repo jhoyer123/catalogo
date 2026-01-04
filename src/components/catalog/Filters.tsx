@@ -1,6 +1,7 @@
-// src/components/Filters.tsx
 import React, { useState } from "react";
-import { type ProductoInt } from "../../interfaces/Producto";
+import { type ProductoInt } from "../../types/product";
+import { useGetCategories } from "@/hooks/category/useGetCategories";
+import type { FilterOptions } from "@/types/filter";
 
 interface FiltersProps {
   allProducts: ProductoInt[];
@@ -10,11 +11,11 @@ interface FiltersProps {
   categoria: string | null;
   setCategoria: (v: string | null) => void;
 
-  ofertaOnly: boolean;
-  setOfertaOnly: (v: boolean) => void;
+  offerOnly: boolean;
+  setOfferOnly: (v: boolean) => void;
 
-  sort: string | null;
-  setSort: (v: string | null) => void;
+  sort: FilterOptions["sort"];
+  setSort: (v: FilterOptions["sort"]) => void;
 }
 
 export const Filters: React.FC<FiltersProps> = React.memo((props) => {
@@ -24,8 +25,8 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
     setQuery,
     categoria,
     setCategoria,
-    ofertaOnly,
-    setOfertaOnly,
+    offerOnly,
+    setOfferOnly,
     sort,
     setSort,
   } = props;
@@ -33,10 +34,7 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
   // Estado para abrir/cerrar en móvil
   const [isOpen, setIsOpen] = useState(false);
 
-  const categories = React.useMemo(() => {
-    const cats = Array.from(new Set(allProducts.map((p) => p.categoria)));
-    return cats;
-  }, [allProducts]);
+  const { data: categories } = useGetCategories();
 
   return (
     <div className="h-fit w-full bg-[#F5F5F5] border border-[#D4D4D4] sm:rounded-xl shadow-lg overflow-hidden transition-all duration-300">
@@ -127,13 +125,13 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
               <option value="" className="bg-[#F5F5F5] text-[#404040]">
                 Todas las colecciones
               </option>
-              {categories.map((cat) => (
+              {(categories ?? []).map((cat) => (
                 <option
-                  key={cat}
-                  value={cat}
+                  key={cat.id}
+                  value={cat.id}
                   className="bg-[#F5F5F5] text-[#262626]"
                 >
-                  {cat}
+                  {cat.nameCat}
                 </option>
               ))}
             </select>
@@ -163,9 +161,7 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
           <div className="relative">
             <select
               value={sort ?? ""}
-              onChange={(e) =>
-                setSort(e.target.value === "" ? null : e.target.value)
-              }
+              onChange={(e) => setSort(e.target.value as FilterOptions["sort"])}
               className="w-full appearance-none bg-[#FAFAFA] text-[#262626] border border-[#A3A3A3]/50 rounded-lg py-3 px-4 focus:outline-none focus:border-[#404040] focus:ring-1 focus:ring-[#404040] transition-all duration-300 cursor-pointer"
             >
               <option value="" className="bg-[#F5F5F5] text-[#404040]">
@@ -179,6 +175,12 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
                 className="bg-[#F5F5F5] text-[#262626]"
               >
                 Precio: Mayor a menor
+              </option>
+              <option
+                value="more_recent"
+                className="bg-[#F5F5F5] text-[#262626]"
+              >
+                Más recientes
               </option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#404040]">
@@ -208,8 +210,8 @@ export const Filters: React.FC<FiltersProps> = React.memo((props) => {
             <div className="relative inline-flex items-center cursor-pointer">
               <input
                 type="checkbox"
-                checked={ofertaOnly}
-                onChange={(e) => setOfertaOnly(e.target.checked)}
+                checked={offerOnly}
+                onChange={(e) => setOfferOnly(e.target.checked)}
                 className="sr-only peer"
               />
               <div className="w-11 h-6 bg-[#D4D4D4] peer-focus:outline-none border border-[#737373] rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-[#FFFFFF] after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#404040] peer-checked:after:bg-[#FFFFFF]"></div>

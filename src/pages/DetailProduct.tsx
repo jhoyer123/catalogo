@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect } from "react";
-import { type ProductoInt } from "../interfaces/Producto";
+import { type ProductoInt } from "../types/product";
 import {
   ArrowLeft,
   MessageCircle,

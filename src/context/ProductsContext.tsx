@@ -1,7 +1,5 @@
-// src/context/ProductsContext.tsx
 import React, { useEffect, useState } from "react";
-import { type ProductoInt } from "../interfaces/Producto";
-//import { productsMock } from "../datosPrueba/productsMock";
+import { type ProductoInt } from "../types/product";
 import { supabase } from "../dataBase/supabase";
 
 interface ProductsContextValue {
