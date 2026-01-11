@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { type ProductoInt } from "../../types/product";
+import { type ProductInt } from "../../types/product";
 import { ProductsContext } from "../../context/ProductsContext";
 import "./stylesPD.css";
 import { useContext, useEffect, useState } from "react";
 
 const ProdDestacados = () => {
-  const [productos, setProductos] = useState<ProductoInt[]>([]);
+  const [productos, setProductos] = useState<ProductInt[]>([]);
   // traer productos del contexto
   const ctx = useContext(ProductsContext);
   if (!ctx) return null;
@@ -80,7 +80,7 @@ const ProdDestacados = () => {
               {/* Badge de Categoría (Estilo Minimalista) */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-[#171717] text-white rounded-sm shadow-sm">
-                  {producto.categoryId}
+                  {producto.categories.nameCat}
                 </span>
               </div>
 
