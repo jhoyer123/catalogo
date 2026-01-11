@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { type ProductoInt } from "../../types/product";
+import { type ProductInt } from "../../types/product";
 
 interface ProductCardProps {
-  producto: ProductoInt;
+  producto: ProductInt;
 }
 
 const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
   return (
-    // 1. Contenedor principal: Fondo claro (Base/100) y borde/sombra oscuros (400/800)
     <div className="group flex flex-col h-full bg-[#F5F5F5] overflow-hidden rounded-none sm:rounded-xl shadow-lg border border-[#D4D4D4]/50 hover:border-[#737373]/50 transition-all duration-500 hover:-translate-y-1">
       {/* --- SECCIÓN DE IMAGEN --- */}
       <div className="relative w-full aspect-square overflow-hidden bg-[#FAFAFA]">
@@ -18,13 +17,13 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
 
         <img
           //src={`${product.imageUrl}?width=350&quality=70`}
-          src={producto.product_images[0].image_url}
+          src={producto.product_images[0]?.image_url}
           loading="lazy"
           alt={producto.nameProd}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         />
 
-        {/* Badge de categoría: Fondo oscuro (800) con texto muy claro (Base/100) */}
+        {/* Badge de categoría */}
         <div className="absolute top-4 left-4 z-10">
           <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-[#262626] text-[#FFFFFF] rounded-sm">
             {producto.categories.nameCat}
@@ -138,7 +137,7 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ producto }) => {
   );
 };
 
-// 🔥 OPTIMIZACIÓN IMPORTANTE
+// OPTIMIZACIÓN IMPORTANTE
 // Solo se vuelve a renderizar si cambian los datos del producto.
 // Si cambian filtros que NO afectan al producto → NO se re-renderiza.
 export const ProductCard = React.memo(
@@ -151,8 +150,8 @@ export const ProductCard = React.memo(
       prevProps.producto.categories.nameCat ===
         nextProps.producto.categories.nameCat &&
       prevProps.producto.price === nextProps.producto.price &&
-      prevProps.producto.product_images[0].image_url ===
-        nextProps.producto.product_images[0].image_url
+      prevProps.producto.product_images[0]?.image_url ===
+        nextProps.producto.product_images[0]?.image_url
     );
   }
 );

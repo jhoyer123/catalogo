@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { type ProductoInt } from "../types/product";
+import { type ProductInt } from "../types/product";
 import { supabase } from "../dataBase/supabase";
 
 interface ProductsContextValue {
-  products: ProductoInt[];
+  products: ProductInt[];
   // opcional: funciones para manipular productos en desarrollo
-  setProducts?: React.Dispatch<React.SetStateAction<ProductoInt[]>>;
+  setProducts?: React.Dispatch<React.SetStateAction<ProductInt[]>>;
 }
 
 export const ProductsContext = React.createContext<
@@ -15,7 +15,7 @@ export const ProductsContext = React.createContext<
 export const ProductsProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const [products, setProducts] = useState<ProductoInt[]>([]);
+  const [products, setProducts] = useState<ProductInt[]>([]);
 
   const loadProducts = async () => {
     const { data, error } = await supabase
@@ -25,7 +25,7 @@ export const ProductsProvider: React.FC<{
     /* se han vuelto a traer los datos denuevo */
 
     /* mapear productos */
-    const productsMapped: ProductoInt[] = (data ?? []).map((p) => ({
+    const productsMapped: ProductInt[] = (data ?? []).map((p) => ({
       ...p,
       categoria: p.categoria.nombrecategoria, // reemplaza objeto por string
     }));

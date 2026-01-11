@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useLayoutEffect } from "react";
-import { type ProductoInt } from "../types/product";
+import { useLayoutEffect } from "react";
+import DOMPurify from "dompurify";
 import {
   ArrowLeft,
   MessageCircle,
@@ -7,26 +7,15 @@ import {
   Sparkles,
   Tag,
 } from "lucide-react";
+import { useGetProductById } from "@/hooks/product/useGetProductById"; //hook para traer el producto
 import { useNavigate, useParams } from "react-router-dom";
-/* context */
-import { ProductsContext } from "../context/ProductsContext";
-import { useLocation } from "react-router-dom";
 
 export const DetailProduct = () => {
-  const [producto, setProducto] = React.useState<ProductoInt>();
+  //id del producto desde la url
+  const { id } = useParams();
+  //hook para traer el producto
+  const { data: producto } = useGetProductById(id || "");
   const navigate = useNavigate();
-  /* logica del contexto */
-  const ctx = useContext(ProductsContext);
-  if (!ctx) return null; // o fallback UI
-  const { products } = ctx;
-
-  /* obtener el id de la url */
-  const { id } = useParams<{ id: string }>();
-  useEffect(() => {
-    const productoA = products.find((el) => el.id === String(id));
-    setProducto(productoA);
-  }, [products, id]);
-
   /* siempre empezar desde arriba de la pagina */
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -40,8 +29,6 @@ export const DetailProduct = () => {
         ((producto.price - (producto?.priceOffer || 0)) / producto.price) * 100
       )
     : 0;
-  const location = useLocation();
-  console.log(location.state);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#FAFAFA] to-[#F5F5F5] pt-12 md:pt-15">
@@ -173,15 +160,11 @@ export const DetailProduct = () => {
                 </div>
 
                 {/* Descripción */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold text-[#262626] flex items-center gap-2">
-                    <div className="w-1 h-6 bg-[#404040] rounded-full"></div>
-                    Descripción
-                  </h3>
-                  <p className="text-[#525252] leading-relaxed text-base">
-                    {producto?.description}
-                  </p>
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(producto?.description || ""),
+                  }}
+                />
               </div>
 
               {/* Botones de acción */}

@@ -2,13 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 //servicio  para traer los productos
 import { getProducts } from "@/services/productServices";
 //type del los productos
-import type { ProductoInt } from "@/types/product";
+import type { ProductInt } from "@/types/product";
 //type del filtro
 import type { FilterOptions } from "@/types/filter";
 
 //hook para traer los productos
 export const useGetProducts = (dataFilter: FilterOptions) => {
-  return useQuery<{ products: ProductoInt[]; count: number }, Error>({
+  return useQuery<{ products: ProductInt[]; count: number }, Error>({
     queryKey: ["products", dataFilter],
     queryFn: () => getProducts(dataFilter),
   });

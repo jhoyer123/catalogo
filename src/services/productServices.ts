@@ -1,26 +1,37 @@
 import { supabase } from "../dataBase/supabase";
 //type del los productos
-import type { ProductoInt } from "@/types/product";
+import type { ProductInt, ProductDetailInt } from "@/types/product"; //para la vista de catalogo y la vista Detail
 //type del filtro
 import type { FilterOptions } from "@/types/filter";
 
 //service para traer los productos
 export const getProducts = async (
   dataFilter: FilterOptions
-): Promise<{ products: ProductoInt[]; count: number }> => {
-
+): Promise<{ products: ProductInt[]; count: number }> => {
   //limite de productos
   const limit = 20;
   const from = (dataFilter.page - 1) * limit;
   const to = from + limit - 1;
 
-  //definimos la query base
   let query = supabase
     .from("products")
-    .select(`*,product_images(image_url),categories(nameCat)`, {
-      count: "exact",
-    })
+    .select(
+      `
+      id,
+      nameProd,
+      price,
+      brand,
+      isOfferActive,
+      priceOffer,
+      product_images!inner(image_url),
+      categories(nameCat)
+    `,
+      {
+        count: "exact",
+      }
+    )
     .is("deleted_at", null)
+    .limit(1, { foreignTable: "product_images" }) // 🎯 Aquí limitas a 1 imagen
     .range(from, to);
 
   //filtro de busqueda
@@ -61,9 +72,27 @@ export const getProducts = async (
   const { data, count, error } = await query;
 
   if (error) {
-    console.error("Error fetching products:", error);
     throw new Error("error al obtener los productos: " + error);
   }
 
-  return { products: data as ProductoInt[], count: count || 0 };
+  //error de casting de typescript y supadabe en categories viene un object pero ts solo ve un array
+  return { products: data as any, count: count || 0 };
+};
+
+//get product by id
+export const getProductById = async (
+  idProd: string
+): Promise<ProductDetailInt> => {
+  const { data, error } = await supabase
+    .from("products")
+    .select(`*, categories(nameCat), product_images(image_url)`)
+    .is("deleted_at", null)
+    .eq("id", idProd);
+
+  if (error) {
+    throw new Error("Error al traer el producto");
+  }
+  //refinar la data
+  const product: ProductDetailInt = data[0];
+  return product;
 };
